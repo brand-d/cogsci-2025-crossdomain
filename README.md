@@ -8,6 +8,7 @@ Companion repository for the 2025 article "Using Cross-Domain Data to Predict Sy
     - `domain_info.py`: Helper file loading and processing all domain data CSV
     - `get_metrics_table.py`: Generates two CSVs that compare different correctness metrics and informations from the other domain to the syllogistic correctness
     - `performance_plot.py`: Generates the performance plot from the recommender results (reco.py needs to be run first)
+	- `plot_syl_pattern.py`: Generates the syllogistic patterns as a heatmap.
     - `reco.py`: Performs the recommender run
     - `syl_corr.py`: Generates `syl_correct.csv` in the data folder, which more conveniently offers the correctness metrics
 - `data`: Contains the datasets with for all tested domains (with all participants, each):
