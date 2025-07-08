@@ -24,6 +24,8 @@ Companion repository for the 2025 article "Using Cross-Domain Data to Predict Sy
     - `syllog_data.csv`: Contains the results and responses for the 64 syllogistic reasoning tasks
     - `verbal_data.csv`: Contains the results and responses for the verbal substitution tasks
     - `wason_data.csv`: Contains the results and responses for the Wason card selection task (with different metrics for correctness to allow for partial correctness, too)
+- `poster`: Contains the conference poster`
+	- `cogsci2025_crossdomain_poster.pdf`: The CogSci2025 poster.
 
 ## Requirements
 - Python 3.12
