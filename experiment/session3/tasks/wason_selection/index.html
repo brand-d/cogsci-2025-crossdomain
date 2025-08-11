@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/wason.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body>
+        <div id="main_container" class="container fit_wason">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Which cards need to be turned?</h3>
+				</header>
+
+                <div id="main_section">
+                    <p>
+                        Imagine a set of four cards, that have a number on one side and a color on the other side.
+                        The four cards are shown below:
+                    </p>
+                    <div id="card_grid" class="inline_box">
+                        <article id="card_1" class="wason_card">
+                            <label class="wason_label" for="card_1_check">
+                                <div id="card_1_content" class="card_content">5</div>
+                            </label>
+                            <input type="checkbox" id="card_1_check" class="wason_checkboxes">
+                        </article>
+                        <article id="card_2" class="wason_card">
+                            <label class="wason_label" for="card_2_check">
+                                <div id="card_2_content" class="card_content">8</div>
+                            </label>
+                            <input type="checkbox" id="card_2_check" class="wason_checkboxes">
+                        </article>
+                        <article id="card_3" class="wason_card green_card">
+                            <label class="wason_label" for="card_3_check">
+                                <div id="card_3_content" class="card_content">Green</div>
+                            </label>
+                            <input type="checkbox" id="card_3_check" class="wason_checkboxes">
+                        </article>
+                        <article id="card_4" class="wason_card blue_card">
+                            <label class="wason_label" for="card_4_check">
+                                <div id="card_4_content" class="card_content">Blue</div>
+                            </label>
+                            <input type="checkbox" id="card_4_check" class="wason_checkboxes">
+                        </article>
+                    </div>
+                    <p>
+                        You are then told the following assumption:<br>
+                        <b>If a card shows an even number, it's opposite side is green.</b>
+                    </p>
+                    <p>
+                        Which card(s) do you <b>have to turn over</b> in order to <b>determine if the rule is true or false</b>?<br>
+                        You can click on the cards to select/deselect them for turning. Select only the cards necessary to determine if the rule holds or not.
+                        When you are done, click on continue.
+                    </p>
+                    <p id="turned_cards_text">
+                        Cards selected to be turned: None
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div>
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
+which card(s) do you need to turn over in order to determine if the rule is true or false?

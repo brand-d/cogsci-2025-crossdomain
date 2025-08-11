@@ -1,0 +1,79 @@
+#fruit_div {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    width: 540px;
+    height: 120px;
+    gap: 5px;
+    margin: auto;
+    padding: 10px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.fruit {
+    border: 1px solid black;
+    width: 100px;
+    font-size: large;
+    text-align: center;
+    height: 100px;
+    padding-top: 20px;
+    border-radius: 10px;
+    background-color: #EAEAEA;
+}
+
+.movable {
+    cursor: move;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#main_container {
+    min-width: 800px;
+}
+
+.unicode_obj {
+    font-family: "Noto Color Emoji", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: larger;
+    font-size-adjust: 1;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+}
+
+.drag_from{
+    background-color: #F5F5F5!important;
+}
+
+.drag_to {
+    background-color: #DDD!important;
+}
+
+.sortable-chosen {
+    background-color: #F5F5F5!important;
+    cursor: move !important;
+}
+
+#premises_div {
+    text-align: left; 
+    width: fit-content; 
+    margin: auto; 
+    padding-top: 100px;
+    padding-bottom: 75px;
+}
+
+#answer_div {
+    padding-top: 100px;
+}
+
+
+#inner_content_div {
+    min-height: 420px;
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/mentalrotation.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="instruction_1" class="container fit_mental_rotation">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_title">Mental Rotations - Example 1</h3>
+				</header>
+
+
+                <div>
+                    <div >
+                        <div id="progress_text">Time left: 180s</div>
+                        <progress id="progress_bar" value="0" max="180" />
+                    </div>
+                    <p>
+                        Please select the <b>two</b> sketches that resemble the target object.
+                    </p>
+
+                    <div class="inline_box">
+                        <article class="mental_task_box mental_target">
+                            <div class="mental_img_container">
+                                <img id="task_target" src="./img/intro_1.jpg" class="sketch">
+                                <div class="mental_img_label">Target</div>
+                            </div>
+                        </article>
+                        <article class="mental_task_box">
+                            <div class="mental_img_container">
+                                <label for="option_A">
+                                    <img id="task_A" src="./img/intro_1_A.jpg" class="sketch">
+                                </label>
+                                
+                                <div class="mental_img_label">
+                                    <input type="checkbox" id="option_A" name="option" value="A">
+                                    <label for="option_A">A</label>
+                                </div>
+                            </div>
+
+                            <div class="mental_img_container">
+                                <label for="option_B">
+                                    <img id="task_B" src="./img/intro_1_B.jpg" class="sketch">
+                                </label>
+                                
+                                <div class="mental_img_label">
+                                    <input type="checkbox" id="option_B" name="option" value="B">
+                                    <label for="option_B">B</label>
+                                </div>
+                            </div>
+
+                            <div class="mental_img_container">
+                                <label for="option_C">
+                                    <img id="task_C" src="./img/intro_1_C.jpg" class="sketch">
+                                </label>
+                                
+                                <div class="mental_img_label">
+                                    <input type="checkbox" id="option_C" name="option" value="C">
+                                    <label for="option_C">C</label>
+                                </div>
+                            </div>
+
+                            <div class="mental_img_container">
+                                <label for="option_D">
+                                    <img id="task_D" src="./img/intro_1_D.jpg" class="sketch">
+                                </label>
+                                
+                                <div class="mental_img_label">
+                                    <input type="checkbox" id="option_D" name="option" value="D">
+                                    <label for="option_D">D</label>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="true" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="js/main.js"></script>
+        <script>
+            function onFinished() {
+                goToNextTask();
+            }
+
+            window.addEventListener("load", function() {
+                progressBar = document.getElementById("progress_bar");
+                progressText = document.getElementById("progress_text");
+
+                finishedFunction = onFinished;
+                pageName = "mental_rotation_block_2";
+                pageTitle = "Task";
+                tasks = [
+                    "task_11",
+                    "task_12",
+                    "task_13",
+                    "task_14",
+                    "task_15",
+                    "task_16",
+                    "task_17",
+                    "task_18",
+                    "task_19",
+                    "task_20"
+                ];
+                init();
+            })
+        </script>
+    </body>
+</html>

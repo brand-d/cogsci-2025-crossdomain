@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/questionaire.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Syllogisms - Interpretation</h3>
+				</header>
+
+                <div id="question">
+                    <p>When you were presented with statements that contained <b>Some</b> 
+                        (for example <i>Some tailors are teachers</i>):<br> 
+                        Did you interpret <b>Some</b> so that it can also include <b>All</b> 
+                        (for example, would it also possible that <b>all</b> tailors are teachers)?
+                    </p>
+
+                    <div class="questionaire_div">
+                        <label for="entails_all_yes">
+                            <input id="entails_all_yes" type="radio" name="entail" value="yes">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="questionaire_div">
+                        <label for="entails_all_no">
+                            <input id="entails_all_no" type="radio" name="entail" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var continueBtn = document.getElementById("continue_btn");
+            var yesOption = document.getElementById("entails_all_yes");
+            var noOption = document.getElementById("entails_all_no");
+
+            window.addEventListener("load", function() {
+                // Add callback for continue button
+                continueBtn.addEventListener("click", async function() {
+                    // Disable button
+                    continueBtn.disabled = true;
+                    yesOption.disabled = true;
+                    noOption.disabled = true;
+                    
+                    // Show spinning circle while saving
+                    continueBtn.setAttribute("aria-busy", "true");
+
+                    // Save and continue with next task
+                    let personId = sessionStorage.getItem("personId");
+
+                    let response = yesOption.checked ? "yes" : "no";
+                    let payload = {
+                        "id": personId,
+                        "page" : "syllogisms_some_all",
+                        "page_time" : Date.now() - pageStartTime,
+                        "response" : response,
+                    }
+
+                    let success = await writeData(payload);
+                    if(success) {
+                        goToNextTask();
+                    } else {
+                        alert("Could not save data. Please contact us for assistance.")
+                    }
+                });
+
+                yesOption.addEventListener("input", function() {
+                    continueBtn.disabled = false;
+                });
+                noOption.addEventListener("input", function() {
+                    continueBtn.disabled = false;
+                });
+            });
+        </script>
+    </body>
+</html>

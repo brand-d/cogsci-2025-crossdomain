@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Questions</h3>
+				</header>
+
+                <div id="crt_div_1">
+                    <p id="crt1_text">
+                        A bat and a ball cost $1.10. The bat costs $1.00 more than the ball. How much does the ball cost?
+                    </p>
+                    <div class="answer_field">
+                        <div class="answer_text_box">
+                            <span>Answer:</span>
+                        </div>
+                        <div class="dollar_box">
+                            <div class="crt_number_input_box">
+                                <input type="number" min="0", max="100" step="0.01" id="crt1" class="crt_number_input" value="0">
+                            </div>
+                            
+                            <label for="crt1" class="dollar_sign">$</label>
+                        </div>
+                        <div class="answer_text_box">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="crt_div_2" hidden>
+                    <p id="crt2_text">
+                        If it takes 5 machines 5 min to make 5 widgets, how long would it take 100 machines to make 100 widgets?
+                    </p>
+                    <div class="answer_field">
+                        <div class="answer_text_box">
+                            <span>Answer:</span>
+                        </div>
+                        <div class="normal_wrapper">
+                            <div class="crt_number_input_box">
+                                <input type="number" min=0, step="1" id="crt2" class="crt_number_input" value="0">
+                            </div>
+                        </div>
+                        <div class="answer_text_box">
+                            <span>minutes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="crt_div_3" hidden>
+                    <p id="crt3_text">
+                        In a lake, there is a patch of lily pads. Every day, the patch doubles in size. If it takes 48 days for the patch to cover the entire lake, how long would it take for the patch to cover half of the lake?
+                    </p>
+                    <div class="answer_field">
+                        <div class="answer_text_box">
+                            <span>Answer:</span>
+                        </div>
+                        <div class="normal_wrapper">
+                            <div class="crt_number_input_box">
+                                <input type="number" min=0, step="1" id="crt3" class="crt_number_input" value="0">
+                            </div>
+                        </div>
+                        <div class="answer_text_box">
+                            <span>days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="crt_div_4" hidden>
+                    <p id="crt4_text">
+                        If John can drink one barrel of water in 6 days, and Mary can drink one barrel of water in 12 days, how long would it take them to drink one barrel of water together?
+                    </p>
+                    <div class="answer_field">
+                        <div class="answer_text_box">
+                            <span>Answer:</span>
+                        </div>
+                        <div class="normal_wrapper">
+                            <div class="crt_number_input_box">
+                                <input type="number" min=0, step="1" id="crt4" class="crt_number_input" value="0">
+                            </div>
+                        </div>
+                        <div class="answer_text_box">
+                            <span>days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="crt_div_5" hidden>
+                    <p id="crt5_text">
+                        Jerry received both the 15th highest and 15th lowest mark in the class. How many students are in the class?
+                    </p>
+                    <div class="answer_field">
+                        <div class="answer_text_box">
+                            <span>Answer:</span>
+                        </div>
+                        <div class="normal_wrapper">
+                            <div class="crt_number_input_box">
+                                <input type="number" min=0, step="1" id="crt5" class="crt_number_input" value="0">
+                            </div>
+                        </div>
+                        <div class="answer_text_box">
+                            <span>students</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="crt_div_6" hidden>
+                    <p id="crt6_text">
+                        A man buys a pig for $60, sells it for $70, buys it back for $80, and sells it finally for $90. How much has he made?
+                    </p>
+                    <div class="answer_field">
+                        <div class="answer_text_box">
+                            <span>Answer:</span>
+                        </div>
+                        <div class="dollar_box">
+                            <div class="crt_number_input_box">
+                                <input type="number" min="0", step="1" id="crt6" class="crt_number_input" value="0">
+                            </div>
+                            
+                            <label for="crt6" class="dollar_sign">$</label>
+                        </div>
+                        <div class="answer_text_box">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="crt_div_7" hidden>
+                    <p id="crt7_text">
+                        Simon decided to invest $8,000 in the stock market 1 day early in 2008. Six months after he invested, in July 17, the stocks he had purchased were down 50%. Fortunately for Simon, from July 17 to October 17, the stocks he had purchased went up 75%. At this point...
+                    </p>
+                    <div class="response_options">
+                        <label for="crt7_1">
+                            <input type="radio" name="crt7" id="crt7_1" value="even">
+                            Simon has broken even
+                        </label>
+                        <label for="crt7_2">
+                            <input type="radio" name="crt7" id="crt7_2" value="profit">
+                            Simon made a profit
+                        </label>
+                        <label for="crt7_3">
+                            <input type="radio" name="crt7" id="crt7_3" value="loss">
+                            Simon lost money
+                        </label>
+                    </div>
+                </div>
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+       <script>
+            var currentQuestion = 1;
+            var continueBtn = document.getElementById("continue_btn");
+            var presentationStartTime = Date.now();
+
+            function showNextTask() {
+                document.getElementById(`crt_div_${currentQuestion}`).hidden = true;
+                if(currentQuestion < 7) {
+                    document.getElementById(`crt${currentQuestion}`).disabled = true;
+                }
+                currentQuestion += 1;
+                if(currentQuestion <= 7) {
+                    document.getElementById(`crt_div_${currentQuestion}`).hidden = false;
+                    presentationStartTime = Date.now();
+                    continueBtn.setAttribute("aria-busy", "false");
+                }
+                else {
+                    goToNextTask();
+                }
+            }
+
+            function numberInputChanged(e) {
+                continueBtn.disabled = e.target.value.length == 0;
+            }
+
+            function clickedRadioButton(e) {
+                continueBtn.disabled = false;
+            }
+
+            function noScrollWheel(e) {
+                e.preventDefault();
+            }
+
+            window.addEventListener("load", function() {
+                // Remove the current task
+                removeCurrentTask();
+                
+                // Block participants from leaving
+                blockLeaving();
+
+                for(let numInput of document.getElementsByClassName("crt_number_input")) {
+                    numInput.addEventListener("input", numberInputChanged);
+                    numInput.addEventListener("wheel", noScrollWheel);
+                }
+                for(let radioBtn of document.getElementsByName("crt7")) {
+                    radioBtn.addEventListener("input", clickedRadioButton);
+                }
+                continueBtn.addEventListener("click", async function() {
+                    continueBtn.disabled = true;
+                    continueBtn.setAttribute("aria-busy", "true");
+
+                    let response = null;
+                    if(currentQuestion < 7) {
+                        let currentInput = document.getElementById(`crt${currentQuestion}`);
+                        currentInput.disabled = true;
+                        response = parseFloat(currentInput.value);
+                    } else if(currentQuestion == 7) {
+                        for(let radioBtn of document.getElementsByName("crt7")) {
+                            if(radioBtn.checked) response = radioBtn.value;
+                            radioBtn.disabled = true;
+                        }
+                    }
+                    let questionText = document.getElementById(`crt${currentQuestion}_text`).textContent;
+                    questionText = questionText.replaceAll(";", ",").replaceAll("\n", " ").trim();
+                    let personId = sessionStorage.getItem("personId");
+                    let payload = {
+                        "id": personId,
+                        "page" : "crt",
+                        "question_idx": currentQuestion,
+                        "question_text": questionText,
+                        "response": response,
+                        "rt" : Date.now() - presentationStartTime,
+                        "page_time" : Date.now() - pageStartTime
+                    }
+
+                    let success = await writeData(payload);
+                    if(success) {
+                        showNextTask();
+                    }
+                    else {
+                        alert("Could not save data. Please contact us for assistance.");
+                    }
+                });
+
+                presentationStartTime = Date.now();
+            });
+       </script>
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

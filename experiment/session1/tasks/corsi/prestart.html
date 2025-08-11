@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Block Tapping Test</h3>
+				</header>
+
+                <div>
+                    <p>
+                        You completed the practice sequences! 
+                        Click on the <i>Continue</i> button to proceed. 
+                        Note that there will be no feedback anymore.
+                    </p>
+
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var continueBtn = document.getElementById("continue_btn");
+            window.addEventListener("load", function() {
+                continueBtn.addEventListener("click", async function() {
+                    continueBtn.disabled = true;
+                    let personId = sessionStorage.getItem("personId");
+                    let payload = {
+                        "id": personId,
+                        "page" : "corsi_prestart",
+                        "page_time" : Date.now() - pageStartTime
+                    }
+                    let success = await writeData(payload);
+                    if(success) {
+                        changePage("task.html");
+                    }
+                    else {
+                        alert("Could not save data. Please contact us for assistance.");
+                    }
+                });
+            });
+        </script>
+        
+    </body>
+</html>

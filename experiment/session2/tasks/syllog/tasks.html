@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+        <script src="js/syllog.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container unselectable">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="title_text">Task 1/64</h3>
+				</header>
+
+                <div>
+                    <div id="premise_box">
+                        <h4 id="premise1" class="premises"></h4>
+                        <h4 id="premise2"class="premises"></h4>
+                        <hr>
+                        <h5>What, if anything, follows?</h5>
+                    </div>
+
+                    <div id="responses_box">
+                        <div class="response_box" for="response_1">
+                            <input type="checkbox" id="response_1" class="response_checkboxes" value="Aac">
+                            <span id="Aac"></span>
+                        </div>
+                        
+                        <div class="response_box" for="response_2">
+                            <input type="checkbox" id="response_2" class="response_checkboxes" value="Aca">
+                            <span id="Aca"></span>
+                        </div>
+
+                        <div class="response_box" for="response_3">
+                            <input type="checkbox" id="response_3" class="response_checkboxes" value="Iac">
+                            <span id="Iac"></span>
+                        </div>
+
+                        <div class="response_box" for="response_4">
+                            <input type="checkbox" id="response_4" class="response_checkboxes" value="Ica">
+                            <span id="Ica"></span>
+                        </div>
+                        
+                        <div class="response_box" for="response_5">
+                            <input type="checkbox" id="response_5" class="response_checkboxes" value="Eac">
+                            <span id="Eac"></span>
+                        </div>
+
+                        <div class="response_box" for="response_6">
+                            <input type="checkbox" id="response_6" class="response_checkboxes" value="Eca">
+                            <span id="Eca"></span>
+                        </div>
+
+                        <div class="response_box" for="response_7">
+                            <input type="checkbox" id="response_7" class="response_checkboxes" value="Oac">
+                            <span id="Oac"></span>
+                        </div>
+
+                        <div class="response_box" for="response_8">
+                            <input type="checkbox" id="response_8" class="response_checkboxes" value="Oca">
+                            <span id="Oca"></span>
+                        </div>
+
+                        <div class="response_box" for="nvc">
+                            <input type="checkbox" id="nvc" class="response_checkboxes" value="nvc">
+                            <span id="nvc">No valid conclusion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <button id="guess_btn" aria-busy="false" disabled>I needed to guess</button>
+                    <button id="confidence_btn" aria-busy="false" disabled>I am confident</button>
+                </footer>
+            </article>
+        </div>
+        <script>
+            var syllogisms = ['AE1', 'EA3', 'AE3', 'AI4', 'AA2', 'EE3', 'OO3', 'AO4', 'II3', 'II4', 'EO1', 'AA3', 'EE2', 'EO3', 'EO4', 'IO4', 'OO1', 'AO3', 'IE1', 'OA3', 'IO1', 'IE3', 'EI3', 'AI3', 'OI2', 'EI4', 'EI1', 'AO2', 'OA2', 'EA4', 'AI1', 'IA2'];
+        </script>
+        <script src="js/task.js"></script>
+    </body>
+</html>

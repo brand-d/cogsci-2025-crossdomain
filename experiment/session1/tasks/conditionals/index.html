@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Conditional Reasoning</h3>
+				</header>
+
+                <div>
+                    <p>In the following tasks, you will be presented with two sentences 
+                        for which you need to <b>assume that they are true</b>.</p>
+                    <p style="margin-top: 1em;">Your task is then to <b>determine what follows necessarily</b> (meaning that it is guaranteed to be true)
+                        from both sentences together. 
+                        For that, you will be presented with three options to choose from.</p>
+                    <p>Consider the following example:</p>
+
+                    <article>
+                        <div id="conditional_box">
+                            <div id="premise_box">
+                                <h6 id="premise"></h6>
+                                <h6 id="minor"></h6>
+                                <hr>
+                                <h6 id="what_follows">What, if anything, follows?</h6>
+                            </div>
+                            <div id="response_box">
+                                <label for="pos_answer">
+                                    <input id="pos_answer" type="radio" name="options" value="positive">
+                                    <span id="pos_answer_text"></span>
+                                </label>
+                                <label for="neg_answer">
+                                    <input id="neg_answer" type="radio" name="options" value="negative">
+                                    <span id="neg_answer_text"></span>
+                                </label>
+                                <label for="nvc_answer">
+                                    <input id="nvc_answer" type="radio" name="options" value="nvc">
+                                    <span>Neither option necessarily follows</span>
+                                </label>
+                            </div>
+                        </div>  
+                    </article>
+                                      
+                </div>
+                <p>
+                    Select the option that is <b>necessarily follows</b> from the information above.
+                    If neither option follows, 
+                    select <i>Neither option follows</i>.
+                </p>
+                <p>
+                    After selecting your answer, click on <i>Continue</i> to proceed with the next task.
+                </p>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            const pageName = "conditionals_introduction";
+            const maxTasks = 8;
+            const taskOffset = 0;
+
+            function continueFn() {
+                changePage("tasks.html");
+            }
+
+            var contents = [
+                {
+                    "premise": "If it is raining, then the ground is wet",
+                    "p": "It is raining",
+                    "q": "The ground is wet",
+                    "not_p": "It is not raining",
+                    "not_q": "The ground is not wet",
+                    "item": "intro_conditional"
+                }
+            ];
+            var tasks = ["MP"];
+
+            window.addEventListener("load", function() {
+                // Remove task from task list
+                removeCurrentTask();
+            });
+        </script>
+       
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

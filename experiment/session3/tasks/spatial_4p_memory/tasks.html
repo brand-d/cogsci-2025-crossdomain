@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_counter">Task</h3>
+				</header>
+
+                <div id="inner_content_div">
+                    <div id="premise1_div" class="premise_div screen unselectable">
+                        <h3 id="premise1_text"></h3>
+                    </div>
+    
+                    <div id="premise2_div" class="premise_div screen unselectable">
+                        <h3 id="premise2_text"></h3>
+                    </div>
+    
+                    <div id="premise3_div" class="premise_div screen unselectable">
+                        <h3 id="premise3_text"></h3>
+                    </div>
+    
+                    <div id="premise4_div" class="premise_div screen unselectable">
+                        <h3 id="premise4_text"></h3>
+                    </div>
+
+                    <div id="answer_div" class="screen unselectable">
+                        <h3 id="question_text">
+                            
+                        </h3>
+                        <div id="response_box">
+                            <div class="option unselectable">
+                                <label for="pos_answer">
+                                    <input id="pos_answer" type="radio" name="options" value="yes">
+                                    <span id="pos_answer_text">Yes, it is guaranteed</span>
+                                </label>
+                            </div>
+                            <div class="option unselectable">
+                                <label for="neg_answer">
+                                    <input id="neg_answer" type="radio" name="options" value="no">
+                                    <span id="neg_answer_text">No, it cannot be the case</span>
+                                </label>
+                            </div>
+                            <div class="option unselectable">
+                                <label for="nvc_answer">
+                                    <input id="nvc_answer" type="radio" name="options" value="nvc">
+                                    <span>It cannot be determined</span>
+                                </label>
+                            </div>
+                            <div class="option unselectable">
+                                <label for="dontknow_answer">
+                                    <input id="dontknow_answer" type="radio" name="options" value="dontknow">
+                                    <span>I don't know</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+       <script>
+            const pageName = "spatial_4p_memory_tasks";
+            function onFinished() {
+                goToNextTask();
+            }
+
+            var tasks = [
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["right", "C", "A"],
+                    "premise3": ["right", "D", "C"],
+                    "premise4": ["right", "E", "D"],
+                    "task": "task_det_1_nextto",
+                    "task_ref": "task_2",
+                    "question": {"question_name": "nextto_A_E", "form": ["nextto", "A", "E"]},
+                    "continuous": true,
+                    "correct":"no"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "C", "B"],
+                    "premise3": ["right", "D", "A"],
+                    "premise4": ["right", "E", "D"],
+                    "task": "task_det_2_nextto",
+                    "task_ref": "task_13",
+                    "question": {"question_name": "nextto_A_E", "form": ["nextto", "A", "E"]},
+                    "continuous": false,
+                    "correct":"no"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["left", "D", "A"],
+                    "premise4": ["left", "E", "D"],
+                    "task": "task_det_3_between",
+                    "task_ref": "task_9",
+                    "question": {"question_name": "between_E_A", "form": ["between", "E", "A"]},
+                    "continuous": false,
+                    "correct":"yes"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["left", "C", "D"],
+                    "premise4": ["right", "E", "D"],
+                    "task": "task_det_4_nextto",
+                    "task_ref": "task_15",
+                    "question": {"question_name": "nextto_D_C", "form": ["nextto", "D", "C"]},
+                    "continuous": true,
+                    "correct":"yes"
+                },
+                //Indeterministic Tasks
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "C", "A"],
+                    "premise3": ["left", "D", "A"],
+                    "premise4": ["right", "D", "E"],
+                    "task": "task_indet_1_nextto",
+                    "task_ref": "task_23",
+                    "question": {"question_name": "nextto_A_B", "form": ["nextto", "A", "B"]},
+                    "continuous": true,
+                    "correct":"yes"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["right", "D", "B"],
+                    "premise4": ["right", "E", "D"],
+                    "task": "task_indet_2_between",
+                    "task_ref": "pmm_spatial_sort_1",
+                    "question": {"question_name": "between_C_B", "form": ["between", "C", "B"]},
+                    "continuous": true,
+                    "correct":"nvc"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["right", "C", "A"],
+                    "premise3": ["right", "D", "A"],
+                    "premise4": ["left", "D", "E"],
+                    "task": "task_indet_3_nextto",
+                    "task_ref": "task_31",
+                    "question": {"question_name": "nextto_C_A", "form": ["nextto", "C", "A"]},
+                    "continuous": true,
+                    "correct":"nvc"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "C", "B"],
+                    "premise3": ["left", "D", "C"],
+                    "premise4": ["left", "E", "C"],
+                    "task": "task_indet_4_between",
+                    "task_ref": "task_30",
+                    "question": {"question_name": "between_C_B", "form": ["between", "C", "B"]},
+                    "continuous": true,
+                    "correct":"no"
+                }
+            ];
+       </script>
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

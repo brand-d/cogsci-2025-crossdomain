@@ -1,0 +1,48 @@
+#sequence_text {
+    text-align: center;
+}
+
+.substitution_text {
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#illustrated_solution {
+    text-align: center;
+}
+
+.illustration_text {
+    text-align: center;
+}
+
+#main_box {
+    position: relative;
+    min-height: 25em;
+}
+
+.vertical_centered {
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+#sequence_presentation_box {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#sequence_test_box {
+    text-align: center;
+}
+
+#sequence_test_box input {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    text-align: center;
+    font-size: larger;
+}

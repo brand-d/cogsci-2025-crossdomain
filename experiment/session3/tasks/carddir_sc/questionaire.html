@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/questionaire.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Cardinal Directions</h3>
+				</header>
+
+                <div id="question_1">
+                    <h5>Did you guess during the previous tasks?</h5>
+
+                    <div class="questionaire_div">
+                        <label for="guess_yes">
+                            <input id="guess_yes" type="radio" name="guessing" value="yes">
+                            Yes
+                        </label>
+                    </div>
+                    <article id="guessing_text_div" hidden>
+                        <p>
+                            If yes, please describe when (if possible with a small example) and why:
+                        </p>
+                        <textarea id="guessing_input" placeholder="Please describe when and why" disabled></textarea>
+                    </article>
+                    <div class="questionaire_div">
+                        <label for="guess_no">
+                            <input id="guess_no" type="radio" name="guessing" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div id="question_2" hidden>
+                    <h5>How did you approach solving the tasks?</h5>
+
+                    <div class="questionaire_div">
+                        <label for="strat_spatial">
+                            <input id="strat_spatial" type="radio" name="strategy" value="spatial">
+                            By imagining the spatial relations beween the places
+                        </label>
+                    </div>
+                    <div class="questionaire_div">
+                        <label for="strat_verbal">
+                            <input id="strat_verbal" type="radio" name="strategy" value="verbal">
+                            By reasoning verbally about the statements
+                        </label>
+                    </div>
+                    <div class="questionaire_div">
+                        <label for="strat_other">
+                            <input id="strat_other" type="radio" name="strategy" value="other">
+                            Other (please describe below):
+                        </label>
+                    </div>
+                    <textarea id="strategy_input" placeholder="Describe your strategy here" disabled></textarea>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var currentQuestion = 1;
+
+            var strategyFreetext = document.getElementById("strategy_input");
+            var strategyOptions = document.getElementsByName("strategy");
+            var otherStrat = document.getElementById("strat_other");
+            var continueBtn = document.getElementById("continue_btn");
+            var strategyStartTime = Date.now();
+
+            var guessingDiv = document.getElementById("guessing_text_div");
+            var guessingText = document.getElementById("guessing_input");
+            var guessingTrue = document.getElementById("guess_yes");
+            var guessingFalse = document.getElementById("guess_no");
+
+            function strategyAnswerChanged(e) {
+                strategyFreetext.disabled = !otherStrat.checked;
+                if(otherStrat.checked) strategyFreetext.focus();
+                continueBtn.disabled = (otherStrat.checked) && (strategyFreetext.value.length == 0);
+            }
+
+            function guessingAnswerChanged() {
+                if(guessingTrue.checked) {
+                    guessingDiv.hidden = false;
+                    guessingText.disabled = false;
+                    guessingText.focus();
+                } else {
+                    guessingDiv.hidden = true;
+                    guessingText.disabled = true;
+                }
+                let ifYes = guessingTrue.checked && (guessingText.value.length > 0);
+                continueBtn.disabled = !guessingFalse.checked && !ifYes;
+            }
+
+            function guessingTextChanged() {
+                let ifYes = guessingTrue.checked && (guessingText.value.length > 0);
+                continueBtn.disabled = !ifYes;
+            }
+
+            async function saveGuessing() {
+                if(currentQuestion != 1) return;
+                continueBtn.disabled = true;
+                continueBtn.setAttribute("aria-busy", "true");
+                let personId = sessionStorage.getItem("personId");
+                let response = guessingTrue.checked ? "yes" : "no";
+                let responseText = guessingText.value;
+                responseText = responseText.replaceAll(";", ",").replaceAll("\n", "%newline%");
+                let payload = {
+                    "id": personId,
+                    "page" : "carddir_sc_guessing",
+                    "page_time" : Date.now() - pageStartTime,
+                    "response": response,
+                    "response_text": responseText
+                }
+                let success = await writeData(payload);
+                if(success) {
+                    continueBtn.setAttribute("aria-busy", "false");
+                    currentQuestion = 2;
+                    document.getElementById("question_1").hidden = true;
+                    document.getElementById("question_2").hidden = false;
+                }
+                else {
+                    alert("Could not save data. Please contact us for assistance.");
+                }
+            }
+
+            async function saveStrategy() {
+                if(currentQuestion != 2) return;
+
+                continueBtn.disabled = true;
+                continueBtn.setAttribute("aria-busy", "true");
+                let personId = sessionStorage.getItem("personId");
+                let payload = {
+                    "id": personId,
+                    "page" : "carddir_sc_strategy",
+                    "page_time" : Date.now() - strategyStartTime
+                }
+                for(let option of strategyOptions) {
+                    option.disabled = true;
+                    strategyFreetext.disabled = true;
+                    if(option.checked) {
+                        payload["strategy"] = option.value;
+                    }
+                }
+                let strategyTextAnswer = strategyFreetext.value;
+                strategyTextAnswer = strategyTextAnswer.replaceAll(";", ",").replaceAll("\n", "%newline%");
+                payload["strategy_text"] = strategyTextAnswer;
+
+                let success = await writeData(payload);
+                if(success) {
+                    goToNextTask();
+                }
+                else {
+                    alert("Could not save data. Please contact us for assistance.");
+                }
+            }
+
+            window.addEventListener("load", function() {
+                blockLeaving();
+
+                for(let option of strategyOptions) {
+                    option.addEventListener("input", strategyAnswerChanged);
+                }
+                strategyFreetext.addEventListener("input", strategyAnswerChanged);
+
+                guessingTrue.addEventListener("input", guessingAnswerChanged);
+                guessingFalse.addEventListener("input", guessingAnswerChanged);
+                guessingText.addEventListener("input", guessingTextChanged);
+
+                continueBtn.addEventListener("click", async function() {
+                    if(currentQuestion == 1) await saveGuessing();
+                    else if(currentQuestion == 2) await saveStrategy();
+                });
+            });
+        </script>
+    </body>
+</html>

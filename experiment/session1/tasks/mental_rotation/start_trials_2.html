@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/mentalrotation.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div class="container fit_mental_rotation">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Mental Rotations - Block completed</h3>
+				</header>
+
+                <div>
+                    <p>
+                        Well done, you completed the first block!
+                    </p>
+
+                    <p>
+                        You can now take a break. 
+                        Once you are ready to continue, press the <i>Start</i> button below.
+                        The second block will consist of 10 tasks again.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="start_btn" aria-busy="false">Start</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        
+        <script>
+            var startBtn = document.getElementById("start_btn");
+            startBtn.addEventListener("click", async function() {
+                startBtn.disabled = false;
+                startBtn.setAttribute("aria-busy", "true");
+                let personId = sessionStorage.getItem("personId");
+
+                // Always save the ID and the page too
+                // while redundant, it cant help to show problems when saving
+                let payload = {
+                    "id": personId,
+                    "page" : "mental_rotation_break",
+                    "page_time" : Date.now() - pageStartTime
+                }
+                let success = await writeData(payload);
+                if(success) {
+                    changePage("tasks_2.html");
+                }
+                else {
+                    alert("Could not save data. Please contact us for assistance.")
+                }
+            });
+        </script>
+    </body>
+</html>

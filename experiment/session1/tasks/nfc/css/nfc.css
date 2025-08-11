@@ -1,0 +1,60 @@
+.likert_column {
+	position: relative;
+}
+
+.likert_scale_legend{
+    height: 5.25em;
+    padding: 5px;
+}
+
+.likert_label {
+	text-align: center;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    left: 50%;
+    font-size: large;
+}
+
+.likert_scale {
+    position: relative;
+}
+
+.likert_table {
+    min-width: fit-content;
+    justify-content: space-evenly;
+}
+
+.likert_title_row {
+    height: 3em;
+}
+
+.likert_row td{
+    text-align: center;
+}
+
+.likert_row td:first-child{
+    text-align: left;
+}
+
+.likert_text {
+    min-width: 10em;
+}
+
+.likert_table td,th {
+    width: 5em;
+}
+
+.likert_table td:first-child {
+    width: max-content;
+}
+
+.likert_table th:first-child {
+    width: max-content;
+}
+
+#main_container{
+    min-width: 50em;
+}

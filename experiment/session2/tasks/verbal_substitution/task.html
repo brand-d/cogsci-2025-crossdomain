@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/verbal_substitution.css">
+        <script src="../../common/js/webexp.js"></script>
+        <script src="js/task_def.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body>
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_text">Substitutions Task 1</h3>
+				</header>
+
+                <div id="main_box">
+                    <div id="sequence_presentation_box" hidden>
+                        <p>
+                            Please memorize the following sequence of letters.
+                            When you are done, click on the <i>Continue</i> button below.
+                        </p>
+                        <div class="vertical_centered">
+                            <h3 id="sequence_text"></h3>
+                        </div>
+                    </div>
+                    
+                    <div id="sequence_substitution_box" class="vertical_centered" hidden>
+                        <p id="sequence_substitution_text" class="substitution_text">
+                            Replace every occurrence of <b>C</b> with <b>B</b>.
+                        </p>
+                    </div>
+
+                    <div id="sequence_test_box" hidden>
+                        <p>
+                            Please enter the resulting sequence of letters in the box below. 
+                            You can only type letters that occurred in this task.
+                            To continue, click on the button below. 
+                        </p>
+                        <input type="text" style="text-transform:uppercase" maxlength="15" 
+                        id="sequence_result" autocomplete="off" autofocus />
+                    </div>
+
+                    <div id="pause_box" hidden>
+                        <h4>Take a short break</h4>
+                        <p>
+                            Try to reset and clear your mind before proceeding to the next task.
+                            Once you are ready, click on the <i>Continue</i> button below. 
+                        </p>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div>
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+.dollar_box {
+    position: relative;
+    width: fit-content;
+}
+
+.normal_wrapper {
+    position: relative;
+    width: fit-content;
+}
+
+.normal_wrapper > input {
+    padding-left: 25px;
+    padding-right: 0;
+}
+
+.dollar_box > .dollar_sign {
+    position: absolute;
+    display: block;
+    transform: translate(0, -50%);
+    top: 50%;
+    pointer-events: none;
+    width: 25px;
+    text-align: center;
+    font-style: normal;
+}
+
+.dollar_box > input {
+    padding-left: 25px;
+    padding-right: 0;
+}
+
+.answer_field {
+    display: flex;
+    margin: auto;
+    width: 20em;
+    height: 3.2em;
+    gap: 0.25em;
+    position: relative;
+    justify-content: center;
+}
+
+.crt_number_input_box {
+    width: 150px;
+    height: 100%;
+}
+
+.answer_text_box {
+    height: 100%;
+    position: relative;
+    width: 3.5em;
+}
+
+.answer_text_box span {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

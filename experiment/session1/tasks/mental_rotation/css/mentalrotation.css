@@ -1,0 +1,31 @@
+.fit_mental_rotation {
+    min-width: 900px;
+}
+
+.mental_img_container {
+    text-align: center;
+    height: calc(150px + 1.5em);
+}
+
+.mental_task_box {
+    display: flex;
+    padding: 1em;
+}
+
+.mental_target {
+    margin-right: 1em;
+}
+
+.mental_correct {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 0.1em solid green;
+    width: 150px;
+    height: 150px;
+}
+
+.sketch {
+    width: 150px;
+    height: 150px;
+}

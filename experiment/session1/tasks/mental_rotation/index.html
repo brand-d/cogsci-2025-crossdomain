@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/mentalrotation.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="instruction_1" class="container fit_mental_rotation">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Mental Rotations - Instructions</h3>
+				</header>
+
+                <div>
+                    <p>
+                        In the following tasks you will be presented with a sketch of an object (the <i>target object</i>).
+                        You will also see <b>4 additional sketches</b>, 
+                        with some of them showing the same object from a different perspective. 
+                        Your task is to select all sketches that refer to the <i>target</i> object.
+                    </p>
+                    <p>
+                        To get a feeling how the sketches might look, consider the example below.
+                    </p>
+                    <div class="inline_box">
+                        <img src="./img/example_1_A.jpg" class="sketch">
+                        <img src="./img/example_1_B.jpg" class="sketch">
+                        <img src="./img/example_1_C.jpg" class="sketch">
+                        <img src="./img/example_1_D.jpg" class="sketch">
+                        <img src="./img/example_1_E.jpg" class="sketch">
+                    </div>
+                    <p>
+                        All of these sketches show the same objects from different perspectives.
+                        Try to imagine rotating the object to see for yourself.
+                    </p>
+                    <p>
+                        In contrast, the two sketches below show <b>different</b> objects.
+                        It is impossible to rotate them in any way to align with the object above.
+                        Keep in mind that <b>it is not allowed to mirror the objects</b>.
+                    </p>
+                    <div class="inline_box">
+                        <img src="./img/example_1w_A.jpg" class="sketch">
+                        <img src="./img/example_1w_B.jpg" class="sketch">
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="instr_btn_1" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <div id="instruction_2" class="container fit_mental_rotation" hidden>
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Mental Rotations - Instructions</h3>
+				</header>
+
+                <div>
+                    <p>
+                        In the following tasks, there will always be one target object 
+                        and four other sketches.
+                        Out of those four sketches, there are always <b>exactly two</b> 
+                        sketches that show a rotated version of the target object
+                        (which means that there are always two correct answers).
+                    </p>
+                    <p>    
+                        First, let's take a look at an example. Look at the images below
+                        and think about what the correct options are. Once you are done,
+                        click on continue to show the solution.
+
+                    </p>
+                    <div class="inline_box">
+                        <article class="mental_task_box mental_target">
+                            <div class="mental_img_container">
+                                <img src="./img/example_2.jpg" class="sketch">
+                                <div class="mental_img_label">Target</div>
+                            </div>
+                        </article>
+                        <article class="mental_task_box">
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_A.jpg" class="sketch">
+                                <div class="mental_img_label">A</div>
+                            </div>
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_B.jpg" class="sketch">
+                                <div class="mental_img_label">B</div>
+                            </div>
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_C.jpg" class="sketch">
+                                <div class="mental_img_label">C</div>
+                            </div>
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_D.jpg" class="sketch">
+                                <div class="mental_img_label">D</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="instr_btn_2" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <div id="instruction_3" class="container fit_mental_rotation" hidden>
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Mental Rotations - Instructions</h3>
+				</header>
+
+                <div>
+                    <p>
+                        In the following tasks, there will always be one target object 
+                        and four other sketches.
+                        Out of those four sketches, there are always <b>exactly two</b> 
+                        sketches that show a rotated version of the target object
+                        (which means that there are always two correct answers).
+                    </p>
+                    <p>    
+                        First, let's take a look at an example. Look at the images below
+                        and think about what the correct options are. Once you are done,
+                        click on continue to show the solution.
+
+                    </p>
+                    <div class="inline_box">
+                        <article class="mental_task_box mental_target">
+                            <div class="mental_img_container">
+                                <img src="./img/example_2.jpg" class="sketch">
+                                <div class="mental_img_label">Target</div>
+                            </div>
+                        </article>
+                        <article class="mental_task_box">
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_A.jpg" class="sketch mental_correct">
+                                <div class="mental_img_label">A</div>
+                            </div>
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_B.jpg" class="sketch">
+                                <div class="mental_img_label">B</div>
+                            </div>
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_C.jpg" class="sketch mental_correct">
+                                <div class="mental_img_label">C</div>
+                            </div>
+                            <div class="mental_img_container">
+                                <img src="./img/example_2_D.jpg" class="sketch">
+                                <div class="mental_img_label">D</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <p>
+                    The correct options are <b>A</b> and <b>C</b>.
+                </p>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="instr_btn_3" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <div id="instruction_4" class="container fit_mental_rotation" hidden>
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Mental Rotations - Instructions</h3>
+				</header>
+
+                <div>
+                    <p>
+                        You will now be presented with 3 training runs.
+                        Your task is to select the fitting objects by clicking on them.
+                    </p>
+                    <p>
+                        To start the training runs, click on the <i>Start</i> button below.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="instr_btn_4" aria-busy="false" disabled>Start</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="js/intro.js"></script>
+    </body>
+</html>

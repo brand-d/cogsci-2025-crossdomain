@@ -1,0 +1,190 @@
+<!doctype html>
+<!--
+    If you want to have a min-height on all pages, use the following line instead:
+    <html lang="en" data-theme="light" use-min-height>
+-->
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 
+        It is important to always include the common files.
+         Since a likert scale/table is used here, we can also utilize the likert classed
+         -->
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/nfc.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <!-- 
+                    The main container usually has a header, the main content field, and a footer
+                -->
+                <header class="header_section">
+                    <h3>Please answer some questions about yourself</h3>
+				</header>
+
+                <div id="main_section">
+                    <p>
+                        Before we start with the study, please answer a few questions about yourself.
+                        The following statements may apply more or less to you. 
+                        In general, to what extent do you think each statement applies to you personally?
+                        Please rate them on a scale of 1 (Doesn't apply at all) to 7 (Applies completely).
+                    </p>
+
+                    <div class="likert_table_container">
+                        <table class="likert_table striped">
+                            <thead>
+                                <tr class="likert_title_row">
+                                    <th scope="col" class="likert_column likert_scale_legend"></th>
+                                    <th scope="col" class="likert_column likert_scale_legend">
+                                        <div class="likert_label">Doesn't apply at all</div>
+                                    </th>
+                                    <th scope="col" class="likert_column likert_scale_legend"></th>
+                                    <th scope="col" class="likert_column likert_scale_legend"></th>
+                                    <th scope="col" class="likert_column likert_scale_legend">
+                                        <div class="likert_label">Neither ...nor</div>
+                                    </th>
+                                    <th scope="col" class="likert_column likert_scale_legend"></th>
+                                    <th scope="col" class="likert_column likert_scale_legend"></th>
+                                    <th scope="col" class="likert_column likert_scale_legend">
+                                        <div class="likert_label">Applies completely</div>
+                                    </th>
+                                </tr>
+                                <tr class="likert_row">
+                                    <td></td>
+                                    <td class="likert_scale">
+                                        1
+                                        
+                                    </td>
+                                    <td class="likert_scale">2</td>
+                                    <td class="likert_scale">3</td>
+                                    <td class="likert_scale">
+                                        4
+                                        
+                                    </td>
+                                    <td class="likert_scale">5</td>
+                                    <td class="likert_scale">6</td>
+                                    <td class="likert_scale">
+                                        7
+                                        
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="likert_row">
+                                    <td class="likert_text" scope="row">Simply knowing the answer rather than understanding the reasons for the answer to a problem is fine with me.</td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="1" name="NFC1"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="2" name="NFC1"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="3" name="NFC1"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="4" name="NFC1"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="5" name="NFC1"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="6" name="NFC1"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="7" name="NFC1"/>
+                                    </td>
+                                </tr>
+                                <tr class="likert_row">
+                                    <td class="likert_text" scope="row">I prefer my life to be filled with puzzles that I solve.</td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="1" name="NFC2"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="2" name="NFC2"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="3" name="NFC2"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="4" name="NFC2"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="5" name="NFC2"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="6" name="NFC2"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="7" name="NFC2"/>
+                                    </td>
+                                </tr>
+                                <tr class="likert_row">
+                                    <td class="likert_text" scope="row">I would prefer complex to simple problems.</td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="1" name="NFC3"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="2" name="NFC3"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="3" name="NFC3"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="4" name="NFC3"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="5" name="NFC3"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="6" name="NFC3"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="7" name="NFC3"/>
+                                    </td>
+                                </tr>
+                                <tr class="likert_row">
+                                    <td class="likert_text" scope="row">I primarily think because I have to.</td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="1" name="NFC4"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="2" name="NFC4"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="3" name="NFC4"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="4" name="NFC4"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="5" name="NFC4"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="6" name="NFC4"/>
+                                    </td>
+                                    <td>
+                                        <input class="likert_btn" type="radio" value="7" name="NFC4"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <footer class="footer_section">
+                    <div>
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

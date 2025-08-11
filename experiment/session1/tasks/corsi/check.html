@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Block Tapping Test</h3>
+				</header>
+
+                <div id="corsi_frame_test">
+                    <p>For the task, it is important that this <b>box completely fits on
+                        your screen</b>.
+                    </p>
+                    <div id="check_fulfilled" hidden>
+                        <p>
+                            Currently, the box fits as intended.
+                            Please <b>do not</b> change the size of your browser window or use its 
+                            zoom functionality throughout the next task.
+                        </p>
+                    </div>
+                    
+                    <div id="check_failed" hidden>
+                        <p>
+                            Currently, the available space is too small for the box.
+                            Please try the following:
+                        </p>
+                        <ul>
+                            <li><b>Maximize the browser window</b> (if not already the case)</li>
+                            <li>Use the zoom functionality of the browser to <b>zoom out</b></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var frameTest = document.getElementById("corsi_frame_test");
+            var continueBtn = document.getElementById("continue_btn");
+            var fulfilled = document.getElementById("check_fulfilled");
+            var failed = document.getElementById("check_failed");
+            var observer = null;
+
+            function observerCallback(e) {
+                if(e[0].isIntersecting) {
+                    frameTest.setAttribute("covered", "false");
+                    continueBtn.disabled = false;
+                    fulfilled.hidden = false;
+                    failed.hidden = true;
+                } else {
+                    frameTest.setAttribute("covered", "true");
+                    continueBtn.disabled = true;
+                    fulfilled.hidden = true;
+                    failed.hidden = false;
+                }
+            }
+
+            window.addEventListener("load", function() {
+                // Remove the current task
+                removeCurrentTask();
+
+                // Block participants from leaving
+                blockLeaving();
+
+                observer = new IntersectionObserver(observerCallback, {
+                    root: null,
+                    rootMargin: "0px",
+                    threshold: 1.0
+                });
+                observer.observe(frameTest);
+
+                continueBtn.addEventListener("click", function() {
+                    changePage("practice.html");
+                });
+            });
+
+        </script>
+    </body>
+</html>

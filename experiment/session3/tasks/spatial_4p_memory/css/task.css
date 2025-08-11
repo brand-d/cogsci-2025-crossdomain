@@ -1,0 +1,26 @@
+
+.premise_div {
+    text-align: center;
+    padding-top: 7em;
+}
+
+#inner_content_div {
+    min-height: 15em;
+}
+
+#answer_div {
+    text-align: center;
+    padding-top: 1em;
+}
+
+#response_box {
+    width: fit-content;
+    margin: auto;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

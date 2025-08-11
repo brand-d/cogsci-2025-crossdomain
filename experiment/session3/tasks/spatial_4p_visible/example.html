@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_counter" hidden></h3>
+                    <h3>Example Task</h3>
+				</header>
+
+                <div id="inner_content_div" class="unselectable">
+                    <div class="premise_div screen unselectable">
+                        <h5 id="premise1_text"></h5>
+                        <h5 id="premise2_text"></h5>
+                        <h5 id="premise3_text"></h5>
+                        <h5 id="premise4_text"></h5>
+                    </div>
+                    <hr>
+                    <div id="answer_div" class="unselectable">
+                        
+                        <h4 id="question_text"></h4>
+                        <div id="response_box">
+                            <div class="option unselectable">
+                                <label for="pos_answer">
+                                    <input id="pos_answer" type="radio" name="options" value="yes">
+                                    <span id="pos_answer_text">Yes, it is guaranteed</span>
+                                </label>
+                            </div>
+                            <div class="option unselectable">
+                                <label for="neg_answer">
+                                    <input id="neg_answer" type="radio" name="options" value="no">
+                                    <span id="neg_answer_text">No, it cannot be the case</span>
+                                </label>
+                            </div>
+                            <div class="option unselectable">
+                                <label for="nvc_answer">
+                                    <input id="nvc_answer" type="radio" name="options" value="nvc">
+                                    <span>It cannot be determined</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+       <script>
+            const pageName = "spatial_4p_visible_example";
+            function onFinished() {
+                changePage("pre_start.html");
+            }
+
+            var tasks = [
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["left", "C", "D"],
+                    "premise4": ["left", "E", "D"],
+                    "task": "example_between",
+                    "task_ref": "none",
+                    "question": {"question_name": "between_A_E", "form": ["between", "A", "E"]}
+                }
+            ];
+       </script>
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

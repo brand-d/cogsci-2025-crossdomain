@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+        <script src="../../common/js/webexp.js"></script>
+        <script src="js/Sortable.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container unselectable">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_counter" hidden>Task</h3>
+                    <h3>Example Task</h3>
+				</header>
+
+                <div id="inner_content_div">
+                    <div id="premises_div">
+                        <h3 id="premise1_text">The X is left of the Y</h3>
+                        <h3 id="premise2_text">The X is left of the Y</h3>
+                        <h3 id="premise3_text">The X is left of the Y</h3>
+                        <h3 id="premise4_text">The X is left of the Y</h3>
+                    </div>
+
+                    <div id="answer_div">
+                        
+                        <article id="fruit_div">
+                            <div class="fruit unselectable" id="fruit1_block">
+                                <div class="unicode_obj" id="fruit1"></div>
+                                <span id="fruit1_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit2_block">
+                                <div class="unicode_obj" id="fruit2"></div>
+                                <span id="fruit2_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit3_block">
+                                <div class="unicode_obj" id="fruit3"></div>
+                                <span id="fruit3_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit4_block">
+                                <div class="unicode_obj" id="fruit4"></div>
+                                <span id="fruit4_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit5_block">
+                                <div class="unicode_obj" id="fruit5"></div>
+                                <span id="fruit5_text"></span>
+                            </div>
+                        </article>
+        
+                        <div id="question_div" style="text-align: center; margin-top: 2em;">
+                            <h4 id="answer_task_text">
+                                Is the arrangement above consistent with the statements?
+                            </h4>
+                            <div style="margin: auto; width: fit-content">
+                                <button id="consistent_btn" aria-busy="false">Yes</button>
+                                <button id="inconsistent_btn" aria-busy="false">No</button>
+                            </div>
+                        </div>
+
+                        <div id="fix_arrangement_div" style="text-align: center; margin-top: 2em;" hidden>
+                            <h4 id="fix_arrangement_text">
+                                Please correct the arrangement above so that it is consistent with the statements.
+                            </h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            const pageName = "spatial_model_arrangement_example";
+            function onFinished() {
+                changePage("pre_start.html");
+            }
+
+            var tasksList = [
+                {
+                    "premise1": ["right", "B", "A"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["right", "D", "C"],
+                    "premise4": ["right", "E", "D"],
+                    "model": ["E", "B", "C", "D", "A"],
+                    "valid": false,
+                    "continuous": true,
+                    "indeterminate": false,
+                    "task_id": "task_example_far"
+                }
+            ];
+        </script>
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

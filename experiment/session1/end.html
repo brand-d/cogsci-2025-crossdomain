@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="common/css/main.css">
+        <script src="common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body>
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Session 1 completed!</h3>
+				</header>
+
+                <div id="main_section">
+                    <p>
+                        Thank you for participating in our study!
+					</p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="final_btn" aria-busy="false">Back to Prolific</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="exp_init.js"></script>
+        <script>
+            var exitButton = document.getElementById("final_btn");
+            exitButton.addEventListener("click", async function() {
+                // Show busy circle and disable buttons
+                exitButton.setAttribute("aria-busy", "true");
+                exitButton.disabled = true;
+                changePage(COMPLETED_REDIRECT_URL);
+            });
+        </script>
+    </body>
+</html>

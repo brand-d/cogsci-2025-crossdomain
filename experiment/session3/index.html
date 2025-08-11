@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="light" use-min-height>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="common/css/main.css">
+        <script src="common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body>
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Welcome to Session 3 of our study!</h3>
+				</header>
+
+                <div id="main_section">
+                    <p>
+                        Thank you for continuing with our study! You reached the last session of our 
+						series.
+                    </p>
+                    <p>
+						Like in the previous session, please <b>do not use external tools</b> (like pen and paper)
+						and <b>do not refresh the page or use the back-button</b> of your browser, as it can 
+						invalidate your results.
+					</p>
+					<p>
+						Click on the <i>Start</i> button below to start with the study session.
+					</p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="grid">
+                        <button id="consent_btn" aria-busy="false">Start</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script src="exp_init.js"></script>
+        <script>
+            var consentBtn = document.getElementById("consent_btn");
+
+            consentBtn.addEventListener("click", async function() {
+                // Show busy circle and disable buttons
+                consentBtn.setAttribute("aria-busy", "true");
+                consentBtn.disabled = true;
+
+                // Block leaving
+                blockLeaving();
+
+                // Obtain prolific PID (or other URL-based participant ID)
+                let participantId = getParticipantId(paramName=PARTICIPANT_ID_PARAM_NAME);
+
+                // Create file for that participant
+                let created = await createFileForPerson(personId=participantId);
+
+                // Store current URL to guide later navigation
+                storeCurrentUrl();
+
+                // If creation was successful, continue
+                if(created) {
+                    goToNextTask();
+                } else {
+                    alert("Could not save on server");
+                }
+            });
+        </script>
+    </body>
+</html>

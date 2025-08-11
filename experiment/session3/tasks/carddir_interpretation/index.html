@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container min_size">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Cardinal Direction - Relations</h3>
+				</header>
+
+                <div id="arrangement_1" class="arrangement_divs" hidden>
+                    <h5>Arrangement 1/4</h5>
+                    <p>
+                        Consider the following arrangement of the <b>bank</b> and the <b>church</b>:
+                    </p>
+                    
+                    <div class="spatial_grid">
+                        <div id="church" class="spatial_obj" style="top: 330px; left: 170px;">
+                            <span class="unicode_obj">
+                                &#9962;
+                            </span>
+                            <br>Church
+                        </div>
+
+                        <div id="bank" class="spatial_obj" style="top: 10px; left: 170px;">
+                            <span class="unicode_obj">
+                                &#127974;
+                            </span>
+                            <br>Bank
+                        </div>
+                    </div>
+
+                    <p>
+                        How would you describe the spatial relation between the <b>bank</b> (&#127974;) and the <b>church</b> (&#9962;)
+                        in the following arrangement with cardinal directions?
+                    </p>
+                    <textarea id="arrangement_1_answer" class="answer_texts" placeholder="Answer..."></textarea>
+                </div>
+
+                <div id="arrangement_2" class="arrangement_divs" hidden>
+                    <h5>Arrangement 2/4</h5>
+                    <p>
+                        Consider the following arrangement of the <b>bank</b> and the <b>church</b>:
+                    </p>
+                    
+                    <div class="spatial_grid">
+                        <div id="church" class="spatial_obj" style="top: 20px; left: 100px;">
+                            <span class="unicode_obj">
+                                &#9962;
+                            </span>
+                            <br>Church
+                        </div>
+
+                        <div id="bank" class="spatial_obj" style="top: 320px; left: 224px;">
+                            <span class="unicode_obj">
+                                &#127974;
+                            </span>
+                            <br>Bank
+                        </div>
+                    </div>
+
+                    <p>
+                        How would you describe the spatial relation between the <b>bank</b> (&#127974;) and the <b>church</b> (&#9962;)
+                        in the following arrangement with cardinal directions?
+                    </p>
+                    <textarea id="arrangement_2_answer" class="answer_texts" placeholder="Answer..."></textarea>
+                </div>
+
+                <div id="arrangement_3" class="arrangement_divs" hidden>
+                    <h5>Arrangement 3/4</h5>
+                    <p>
+                        Consider the following arrangement of the <b>bank</b> and the <b>church</b>:
+                    </p>
+                    
+                    <div class="spatial_grid">
+                        <div id="church" class="spatial_obj" style="top: 100px; left: 320px;">
+                            <span class="unicode_obj">
+                                &#9962;
+                            </span>
+                            <br>Church
+                        </div>
+
+                        <div id="bank" class="spatial_obj" style="top: 224px; left: 20px;">
+                            <span class="unicode_obj">
+                                &#127974;
+                            </span>
+                            <br>Bank
+                        </div>
+                    </div>
+
+                    <p>
+                        How would you describe the spatial relation between the <b>bank</b> (&#127974;) and the <b>church</b> (&#9962;)
+                        in the following arrangement with cardinal directions?
+                    </p>
+                    <textarea id="arrangement_3_answer" class="answer_texts" placeholder="Answer..."></textarea>
+                </div>
+
+                <div id="arrangement_4" class="arrangement_divs" hidden>
+                    <h5>Arrangement 4/4</h5>
+                    <p>
+                        Consider the following arrangement of the <b>bank</b> and the <b>church</b>:
+                    </p>
+                    
+                    <div class="spatial_grid">
+                        <div id="church" class="spatial_obj" style="top: 250px; left: 250px;">
+                            <span class="unicode_obj">
+                                &#9962;
+                            </span>
+                            <br>Church
+                        </div>
+
+                        <div id="bank" class="spatial_obj" style="top: 90px; left: 90px;">
+                            <span class="unicode_obj">
+                                &#127974;
+                            </span>
+                            <br>Bank
+                        </div>
+                    </div>
+
+                    <p>
+                        How would you describe the spatial relation between the <b>bank</b> (&#127974;) and the <b>church</b> (&#9962;)
+                        in the following arrangement with cardinal directions?
+                    </p>
+                    <textarea id="arrangement_4_answer" class="answer_texts" placeholder="Answer..."></textarea>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var continueBtn = document.getElementById("continue_btn");
+            var currentArrangement = 0;
+            var arrangementDivs = document.getElementsByClassName("arrangement_divs");
+            var arrangementAnswers = document.getElementsByClassName("answer_texts");
+            var presentationStartTime = Date.now();
+
+            function setVisibility() {
+                for(let arrangement of arrangementDivs) {
+                    console.log(arrangement.id);
+                    arrangement.hidden = arrangement.id != `arrangement_${currentArrangement}`;
+                }
+                presentationStartTime = Date.now();
+            }
+
+            window.addEventListener("load", function() {
+                // Remove the current task
+                removeCurrentTask();
+                
+                // Block participants from leaving
+                blockLeaving();
+
+                // Set listeners up
+                for(let arrangementAnswer of arrangementAnswers) {
+                    arrangementAnswer.addEventListener("input", function(e) {
+                        if(this.id == `arrangement_${currentArrangement}_answer`) {
+                            continueBtn.disabled = this.value.length == 0;
+                        }
+                    });
+                }
+                
+                // Add functionality for continue btn
+                continueBtn.addEventListener("click", async function() {
+                    continueBtn.disabled = true;
+                    continueBtn.setAttribute("aria-busy", "true");
+                
+                    let answerField = document.getElementById(`arrangement_${currentArrangement}_answer`);
+                    answerField.disabled = true;
+                    let response = answerField.value.replaceAll(";", ",").replaceAll("\n", "%newline%");
+
+                    let personId = sessionStorage.getItem("personId");
+                    let payload = {
+                        "id": personId,
+                        "page" : "carddir_interpretation",
+                        "arrangement": currentArrangement,
+                        "response": response,
+                        "rt": Date.now() - presentationStartTime,
+                        "page_time" : Date.now() - pageStartTime
+                    }
+
+                    let success = await writeData(payload);
+                    if(success) {
+                        if(currentArrangement >= 4)
+                            goToNextTask();
+                        else {
+                            currentArrangement += 1;
+                            setVisibility();
+                            continueBtn.setAttribute("aria-busy", "false");
+                        }
+                    }
+                    else {
+                        alert("Could not save data. Please contact us for assistance.");
+                    }
+                });
+
+                // Show first arrangement
+                currentArrangement = 1;
+                setVisibility();
+            });
+        </script>
+
+    </body>
+</html>

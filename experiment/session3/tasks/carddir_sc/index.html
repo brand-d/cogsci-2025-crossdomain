@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_header">Cardinal Directions - Instructions</h3>
+				</header>
+
+                <div>
+                    <p>
+                        In the following tasks, you will be presented with two statements 
+                        about the location of three places/buildings.<br>
+                        Additionally, you are presented with several potential conclusions.
+                        Your task is then to select the conclusion that is <b>the most plausible</b>
+                        for you based on the two statements.
+                    </p>
+                    <p style="margin-bottom: 2em">
+                        As an example, consider the following example task below:
+                    </p>
+
+                    <div id="premise_box">
+                        <h4 id="premise1" class="premises">The <span class="a_term">church</span> is north of the bar.</h4>
+                        <h4 id="premise2"class="premises">The bar is north-east of the <span class="c_term">market</span>.</h4>
+                        <hr>
+                        <h5>Which of the following conclusions are plausible?</h5>
+                    </div>
+
+                    <div id="responses_box">
+                        <div class="response_box" for="response_1">
+                            <input type="radio" name="choices" id="response_1" class="response_checkboxes" value="north">
+                            <span for="response_1">The <span class="c_term">market</span> is <b>north</b> of the <span class="a_term">church</span></span>
+                        </div>
+                        
+                        <div class="response_box" for="response_2">
+                            <input type="radio" name="choices" id="response_2" class="response_checkboxes" value="south">
+                            <span for="response_2">The <span class="c_term">market</span> is <b>south</b> of the <span class="a_term">church</span></span>
+                        </div>
+
+                        <div class="response_box" for="response_3">
+                            <input type="radio" name="choices" id="response_3" class="response_checkboxes" value="north-east">
+                            <span for="response_3">The <span class="c_term">market</span> is <b>north-east</b> of the <span class="a_term">church</span></span>
+                        </div>
+
+                        <div class="response_box" for="response_4">
+                            <input type="radio" name="choices" id="response_4" class="response_checkboxes" value="south-east">
+                            <span for="response_4">The <span class="c_term">market</span> is <b>south-east</b> of the <span class="a_term">church</span></span>
+                        </div>
+                        
+                        <div class="response_box" for="response_5">
+                            <input type="radio" name="choices" id="response_5" class="response_checkboxes" value="north-west">
+                            <span for="response_5">The <span class="c_term">market</span> is <b>north-west</b> of the <span class="a_term">church</span></span>
+                        </div>
+
+                        <div class="response_box" for="response_6">
+                            <input type="radio" name="choices" id="response_6" class="response_checkboxes" value="south-west">
+                            <span for="response_6">The <span class="c_term">market</span> is <b>south-west</b> of the <span class="a_term">church</span></span>
+                        </div>
+
+                        <div class="response_box" for="response_7">
+                            <input type="radio" name="choices" id="response_7" class="response_checkboxes" value="east">
+                            <span for="response_7">The <span class="c_term">market</span> is <b>east</b> of the <span class="a_term">church</span></span>
+                        </div>
+
+                        <div class="response_box" for="response_8">
+                            <input type="radio" name="choices" id="response_8" class="response_checkboxes" value="west">
+                            <span for="response_8">The <span class="c_term">market</span> is <b>west</b> of the <span class="a_term">church</span></span>
+                        </div>
+
+                        <div class="response_box" for="nvc">
+                            <input type="radio" name="choices" id="nvc" class="response_checkboxes" value="nvc">
+                            <span for="nvc">None of the conclusions are plausible</span>
+                        </div>
+
+                    </div>
+
+                    <p style="margin-top: 2em;">
+                        Select the most <b>plausible</b> to you.
+                        Note that the conclusions always relate the <span class="c_term">last</span> with the <span class="a_term">church</span> term.
+                        In this example, this was highlighted by the text color, which will not be the case in the actual tasks.
+                    </p>
+                    <p>
+                        When you are done, click on the <i>Continue</i> button to start with the tasks.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+       
+
+        <script>
+            var responseBoxes = document.getElementsByClassName("response_box");
+            var responseCheckboxes = document.getElementsByClassName("response_checkboxes");
+            var interactions = [];
+            var continueBtn = document.getElementById("continue_btn");
+
+            async function handleContinue() {
+                controlResponseOptions(true);
+                continueBtn.disabled = true;
+                continueBtn.setAttribute("aria-busy", "true");
+
+                let result = [];
+                for(let chkbx of responseCheckboxes) {
+                    if(chkbx.checked) {
+                        result.push(chkbx.value);
+                    }
+                }
+
+                let personId = sessionStorage.getItem("personId");
+
+                let payload = {
+                    "id": personId,
+                    "page" : "cardinal_directions_sc_instruction",
+                    "response" : result,
+                    "interactions": interactions,
+                    "task": "north_north-east",
+                    "terms" : ["church", "bar", "market"],
+                    "rt" : Date.now() - pageStartTime,
+                }
+
+                let success = await writeData(payload);
+                if(success) {
+                    changePage("tasks.html");
+                }
+                else {
+                    alert("Could not save data. Please contact us for assistance.")
+                }
+            }
+            
+            function controlResponseOptions(disabledState) {
+                for(let chkbx of responseCheckboxes) {
+                    chkbx.disabled = disabledState;
+                }
+            }
+
+            function checkContinue() {
+                for(let chkbx of responseCheckboxes) {
+                    if(chkbx.checked) {
+                        continueBtn.disabled = false;
+                        return;
+                    }
+                }
+                continueBtn.disabled = true;
+            }
+
+            function init() {
+                removeCurrentTask();
+                blockLeaving();
+
+                for(let chkbx of responseCheckboxes) {
+                    chkbx.addEventListener("change", function(e) {
+                        interactions.push({
+                            "time": Date.now() - pageStartTime,
+                            "option": chkbx.getAttribute("value"),
+                            "state": chkbx.checked
+                        });
+                        checkContinue();
+                    });
+                }
+
+                for(let box of responseBoxes) {
+                    box.addEventListener("click", function(evt) {
+                        let chkbx = document.getElementById(this.getAttribute("for"));
+                        if(evt.target == chkbx) return;
+                        if(chkbx.disabled) return;
+                        chkbx.checked = !chkbx.checked;
+                        chkbx.focus();
+                        interactions.push({
+                            "time": Date.now() - pageStartTime,
+                            "option": chkbx.getAttribute("value"),
+                            "state": chkbx.checked
+                        });
+                        checkContinue();
+                    });
+                }
+
+                continueBtn.addEventListener("click", handleContinue);
+            }
+
+            window.addEventListener("load", init);
+        </script>
+    </body>
+</html>

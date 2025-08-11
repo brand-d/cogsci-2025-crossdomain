@@ -1,0 +1,27 @@
+.spatial_obj {
+    text-align: center;
+    font-size: larger;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+}
+
+.unicode_obj {
+    transform: scale(2);
+    font-size-adjust: 1;
+}
+
+.spatial_grid {
+    border: 2px solid var(--pico-primary);
+    width: 420px;
+    height: 420px;
+    padding: 10px;
+    margin: auto;
+    position: relative;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.min_size {
+    min-width: 500px;
+}

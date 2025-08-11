@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/verbal_substitution.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body>
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Substitution Task</h3>
+				</header>
+
+                <div id="instructions_1">
+                    <p>
+                        In following task, you will be presented with a sequence of characters
+                        like the following:
+                    </p>
+
+                    <h3 class="illustration_text">ADBCA</h3>
+
+                    <p>
+                        First, you will be asked to <b>memorize</b> the sequence. 
+                        Please <b>do not note the sequence down</b> (e.g., using pen and paper).
+                        After the memorization phase, the sequence will no longer be visible.
+                    </p>
+
+                </div>
+
+                <div id="instructions_2" hidden>
+                    <p>
+                        You are then asked to <b>replace</b> certain letters in the sequence. 
+                        For example, you could be asked to do the following:
+                    </p>
+                    <p id="sequence_substitution_text" class="substitution_text">
+                        Replace all occurrences of C with B
+                    </p>
+                    <p>
+                        You then have to replace all of the respective letters <b>in your mind</b>.
+                        Again, please do not use any external tools.
+                    </p>
+                    
+                </div>
+
+                <div id="instructions_3" hidden>
+                    <p>
+                        In this example, the resulting sequence would be:
+                    </p>
+                    <h3 class="illustration_text">
+                        ADBBA
+                    </h3>
+                    <p>
+                        Finally, at the end of each task, you are asked to enter the resulting sequence 
+                        (after performing <b>all replacements</b>).
+                    </p>
+                    <p>
+                        If you are unsure about the resulting sequence, 
+                        try to enter a sequence that is <b>>as correct as possible</b>.
+                    </p>
+                </div>
+
+                <div id="instructions_4" hidden>
+                    <p>
+                        In the previous example, only one replacement was necessary:
+                    </p>
+                    <div style="width: fit-content; margin: auto;">
+                        <p class="substitution_text">
+                            ADBCA (Start)
+                        </p>
+                        <p class="substitution_text">
+                            Replace all occurrences of C with B
+                        </p>
+                        <hr>
+                        <p class="substitution_text">
+                            ADBBA (Result)
+                        </p>
+                    </div>
+                    <p>
+                        However, in the following tasks, you will also be asked to perform 
+                        <b>multiple replacements</b> in a row before you can enter the result.
+                    </p>
+                    
+                    <p>
+                        Once you are ready to begin,
+                        click on the <i>Continue</i> button below.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div>
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var currentInstruction = 1;
+
+            window.addEventListener("load", function() {
+                // Remove the current task
+                removeCurrentTask();
+
+                // Block participants from leaving
+                blockLeaving();
+
+                // Connect continue button
+                document.getElementById("continue_btn").addEventListener("click", 
+                    async function(e) {
+                        if(currentInstruction < 4) {
+                            document.getElementById(
+                                "instructions_" + currentInstruction
+                            ).hidden = true;
+                            currentInstruction += 1;
+                            document.getElementById(
+                                "instructions_" + currentInstruction
+                            ).hidden = false;
+                        }
+                        else {
+                            e.target.disabled = true;
+                            e.target.setAttribute("aria-busy", "true");
+                            let personId = sessionStorage.getItem("personId");
+                            let payload = {
+                                "id": personId,
+                                "page" : "verbal_substitution_instruction",
+                                "page_time" : Date.now() - pageStartTime
+                            }
+                            let success = await writeData(payload);
+                            if(success) {
+                                changePage("task.html");
+                            }
+                            else {
+                                alert("Could not save data. Please contact us for assistance.")
+                            }
+                        } 
+                });
+            });
+        </script>
+    </body>
+</html>

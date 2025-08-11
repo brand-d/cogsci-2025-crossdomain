@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+		<link rel="stylesheet" href="css/green_circle.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Block Tapping Test</h3>
+				</header>
+
+                <div>
+                    <p>
+                        In the following task, you will see nine 
+                        <b><span style="color :#2b4d96;">blue</span></b> squares on the screen.
+                        The squares will then <b>light up</b> in sequence, one after the other. 
+                    </p>
+                    <p>
+                        Your task is to <b>memorize the sequence</b>.
+                    </p>
+                    <p>
+                        When the sequence is complete, a text and a green circle <span id="green_circle">&#128994;</span> will appear in the top-left corner,
+                        asking you to repeat the sequence that was presented previously.
+                        Then, <b>click on the squares in the same order in which they were lit up</b>.
+                    </p>
+                    <p>
+                        If you cannot remember the order of the squares, click on them <b>as close as possible</b> to the original order.
+                    </p>
+                    <p>
+                        Finally, once you are finished with the sequence, click on the <i>Continue</i> button.
+                        You will then be presented with the next sequence. The <b>difficulty increases</b> as the task progresses.
+                    </p>
+                    
+                    <p>
+                        To familiarize yourself with the task, you are first presented with a few practice problems. 
+                        For these, you will be given feedback after each sequence.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var continueBtn = document.getElementById("continue_btn");
+            window.addEventListener("load", function() {
+                continueBtn.addEventListener("click", async function() {
+                    continueBtn.disabled = true;
+                    let personId = sessionStorage.getItem("personId");
+                    let payload = {
+                        "id": personId,
+                        "page" : "corsi_instruction",
+                        "page_time" : Date.now() - pageStartTime
+                    }
+                    let success = await writeData(payload);
+                    if(success) {
+                        changePage("check.html");
+                    }
+                    else {
+                        alert("Could not save data. Please contact us for assistance.");
+                    }
+                });
+            });
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+        <script src="../../common/js/webexp.js"></script>
+        <script src="js/Sortable.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Spatial Relational Tasks (Memory)</h3>
+				</header>
+
+                <div id="inner_content_div">
+                    <p>
+                        In the following tasks, you will be presented with <b>four statements</b>
+                        describing the <b>spatial relation</b> between fruits again. For example,
+                        the statements could be:
+                    </p>
+
+                    <article style="text-align: left; width: fit-content; margin: auto; padding-bottom: 0.5em;">
+                        <h4>1. The banana is right of the apple</h4>
+                        <h4>2. The apple is right of the mango</h4>
+                        <h4>3. The mango is right of the pear</h4>
+                        <h4>4. The pear is right of the strawberry</h4>
+                    </article>
+
+                    <p style="margin-top: 1.5em;">
+                        These statements will be presented <b>one after the other</b> - 
+                        so you will have to <b>memorize</b> them. Try to imagine the
+                        arrangement in your mind, but <b>do not use any external tools</b> 
+                        (pen and paper, etc). 
+                    </p>
+
+
+                    <p style="margin-top: 1em; margin-bottom: 2em;">This time, once all statements were shown, you will be asked a question about
+                        the arrangement, for example:
+                    </p>
+                    <article style="text-align: left; width: fit-content; margin: auto; padding-bottom: 0.5em;">
+                        <h4>Is the banana next to the pear?</h4>
+                    </article>
+                    <p style="margin-top: 2em;">
+                        Your task is then to <b>decide wether this is in fact the case or not</b>.
+                        Additionally, there is the option that it is <b>impossible to determine</b> 
+                        based on the statements alone.
+                    </p>
+                    <p>
+                        If you <b>forgot the arrangement</b> and therefore cannot answer the questions,
+                        please respond with <i>I don't know</i>.
+                    </p>
+                    <p>
+                        To familiarize yourself with the task, you will be presented with an example 
+                        task first. Click on the <i>Continue</i> button when you are ready to start.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var fruitDiv = document.getElementById("fruit_div");
+            var continueBtn = document.getElementById("continue_btn");
+
+            async function continueFunction() {
+                continueBtn.disabled = true;
+                continueBtn.setAttribute("aria-busy", "true");
+                
+                // Save and continue with next task
+                let personId = sessionStorage.getItem("personId");
+
+                let payload = {
+                    "id": personId,
+                    "page" : "spatial_4p_memory_introduction",
+                    "page_time" : Date.now() - pageStartTime
+                }
+
+                let success = await writeData(payload);
+                if(success) {
+                    changePage("example.html");
+                } else {
+                    alert("Could not save data. Please contact us for assistance.")
+                }
+            }
+
+            function init() {
+                // Remove task from task list
+                removeCurrentTask();
+                
+                // Block participants from leaving
+                blockLeaving();
+
+                // Add continue Btn
+                continueBtn.addEventListener("click", continueFunction);
+            }
+
+            window.addEventListener("load", init);
+        </script>
+
+    </body>
+</html>

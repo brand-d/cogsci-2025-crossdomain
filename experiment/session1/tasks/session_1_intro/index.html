@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Session 1</h3>
+				</header>
+
+                <div>
+                    <h3>Welcome to the first session!</h3>
+
+                    <p>
+                        Please make sure you can complete the whole experiment without <b>interruption</b>. 
+                        Please avoid any distractions (i.e., TV, music, smartphones). 
+                    </p>
+                    <p>
+                        Please <b>do not use a smartphone or tablet</b> to participate in this study, 
+                        as it is optimized for the use of a desktop or laptop. If possible, 
+                        maximize the browser window to make sure you see the tasks without having to scroll.
+                        Also, <b>do not</b> use the back-button of your browser or refresh this page, 
+                        as it might render your experiment invalid.
+                    </p>
+                    <p>
+                        With this study, we aim at advancing our understanding of human reasoning.
+                        Therefore, it is important that you use your memory and mental operations for 
+                        the following tasks. Please <b>do not use external tools</b> (like pen and paper).
+                    </p>
+                    <p>
+                        Thank you again for your participation! When you click on <i>Continue</i>,
+                        the experiment will start.
+                    </p>
+                    
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+       
+
+        <script>
+            window.addEventListener("load", function() {
+                // Remove task from task list
+                removeCurrentTask();
+                
+                // Add continue btn functionality
+                document.getElementById("continue_btn").addEventListener("click", function() {
+                    goToNextTask();
+                });
+            });
+        </script>
+    </body>
+</html>

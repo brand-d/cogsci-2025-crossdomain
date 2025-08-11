@@ -1,0 +1,32 @@
+#premise_box {
+    width: fit-content;
+    margin: auto;
+}
+
+#premise_box h6 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#premise_box hr {
+    margin-bottom: 0;
+    margin-top: 0;
+    height: 0px;
+    border: none;
+    border-top: 0.1em solid var(--pico-h6-color);
+}
+
+#what_follows {
+    text-align: center;
+}
+
+#conditional_box {
+    width: fit-content;
+    margin: auto;
+}
+
+#response_box {
+    width: fit-content;
+    margin: auto;
+    margin-top: 2em;
+}

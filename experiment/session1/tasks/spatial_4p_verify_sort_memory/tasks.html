@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+        <script src="../../common/js/webexp.js"></script>
+        <script src="js/Sortable.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container unselectable">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_counter">Task</h3>
+				</header>
+
+                <div id="inner_content_div">
+                    <div id="premises_div">
+                        <h3 id="premise1_text">The X is left of the Y</h3>
+                        <h3 id="premise2_text">The X is left of the Y</h3>
+                        <h3 id="premise3_text">The X is left of the Y</h3>
+                        <h3 id="premise4_text">The X is left of the Y</h3>
+                    </div>
+    
+                    <div id="answer_div">
+                        
+                        <article id="fruit_div">
+                            <div class="fruit unselectable" id="fruit1_block">
+                                <div class="unicode_obj" id="fruit1"></div>
+                                <span id="fruit1_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit2_block">
+                                <div class="unicode_obj" id="fruit2"></div>
+                                <span id="fruit2_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit3_block">
+                                <div class="unicode_obj" id="fruit3"></div>
+                                <span id="fruit3_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit4_block">
+                                <div class="unicode_obj" id="fruit4"></div>
+                                <span id="fruit4_text"></span>
+                            </div>
+                            <div class="fruit unselectable" id="fruit5_block">
+                                <div class="unicode_obj" id="fruit5"></div>
+                                <span id="fruit5_text"></span>
+                            </div>
+                        </article>
+        
+                        <div id="question_div" style="text-align: center; margin-top: 2em;">
+                            <h4 id="answer_task_text">
+                                Is the arrangement above consistent with the statements?
+                            </h4>
+                            <div style="margin: auto; width: fit-content">
+                                <button id="consistent_btn" aria-busy="false">Yes</button>
+                                <button id="inconsistent_btn" aria-busy="false">No</button>
+                            </div>
+                        </div>
+
+                        <div id="fix_arrangement_div" style="text-align: center; margin-top: 2em;" hidden>
+                            <h4 id="fix_arrangement_text">
+                                Please correct the arrangement above so that it is consistent with the statements.
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            const pageName = "spatial_model_arrangement_mem";
+            function onFinished() {
+                goToNextTask();
+            }
+
+            var tasksList = [
+                // Indet + continuous
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["right", "D", "B"],
+                    "premise4": ["right", "E", "D"],
+                    "model": ["A", "B", "C", "D", "E"],
+                    "valid": true,
+                    "continuous": true,
+                    "indeterminate": true,
+                    "task_id": "task1_pmm"
+                },
+                {
+                    "premise1": ["left", "B", "A"],
+                    "premise2": ["left", "C", "B"],
+                    "premise3": ["right", "B", "D"],
+                    "premise4": ["right", "D", "E"],
+                    "model": ["E", "C", "D", "B", "A"],
+                    "valid": true,
+                    "continuous": true,
+                    "indeterminate": true,
+                    "task_id": "task1_amm1"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["right", "D", "B"],
+                    "premise4": ["right", "E", "D"],
+                    "model": ["A", "B", "D", "E", "C"],
+                    "valid": true,
+                    "continuous": true,
+                    "indeterminate": true,
+                    "task_id": "task1_amm2"
+                },
+                {
+                    "premise1": ["left", "B", "A"],
+                    "premise2": ["right", "B", "C"],
+                    "premise3": ["right", "B", "D"],
+                    "premise4": ["right", "D", "E"],
+                    "model": ["A", "D", "C", "B", "E"],
+                    "valid": false,
+                    "continuous": true,
+                    "indeterminate": true,
+                    "task_id": "task1_far"
+                },
+                {
+                    "premise1": ["right", "B", "A"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["left", "B", "D"],
+                    "premise4": ["left", "D", "E"],
+                    "model": ["A", "D", "C", "B", "E"],
+                    "valid": false,
+                    "continuous": true,
+                    "indeterminate": true,
+                    "task_id": "task1_middle"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["right", "D", "B"],
+                    "premise4": ["right", "E", "D"],
+                    "model": ["A", "C", "B", "D", "E"],
+                    "valid": false,
+                    "continuous": true,
+                    "indeterminate": true,
+                    "task_id": "task1_near"
+                },
+                // Indet + not continuous
+                {
+                    "premise1": ["right", "B", "A"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["right", "A", "D"],
+                    "premise4": ["left", "E", "B"],
+                    "model": ["E", "D", "A", "B", "C"],
+                    "valid": true,
+                    "continuous": false,
+                    "indeterminate": true,
+                    "task_id": "task2_pmm"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["right", "B", "C"],
+                    "premise3": ["right", "D", "A"],
+                    "premise4": ["left", "B", "E"],
+                    "model": ["C", "B", "A", "E", "D"],
+                    "valid": true,
+                    "continuous": false,
+                    "indeterminate": true,
+                    "task_id": "task2_amm1"
+                },
+                {
+                    "premise1": ["right", "B", "A"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["right", "A", "D"],
+                    "premise4": ["left", "E", "B"],
+                    "model": ["D", "A", "E", "B", "C"],
+                    "valid": true,
+                    "continuous": false,
+                    "indeterminate": true,
+                    "task_id": "task2_amm2"
+                },
+                {
+                    "premise1": ["right", "B", "A"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["left", "D", "A"],
+                    "premise4": ["right", "B", "E"],
+                    "model": ["C", "D", "A", "B", "E"],
+                    "valid": false,
+                    "continuous": false,
+                    "indeterminate": true,
+                    "task_id": "task2_far"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "C", "B"],
+                    "premise3": ["left", "A", "D"],
+                    "premise4": ["right", "E", "B"],
+                    "model": ["C", "D", "A", "B", "E"],
+                    "valid": false,
+                    "continuous": false,
+                    "indeterminate": true,
+                    "task_id": "task2_middle"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["left", "B", "C"],
+                    "premise3": ["left", "D", "A"],
+                    "premise4": ["left", "E", "B"],
+                    "model": ["E", "D", "B", "A", "C"],
+                    "valid": false,
+                    "continuous": false,
+                    "indeterminate": true,
+                    "task_id": "task2_near"
+                },
+                // Determined, continuous
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "C", "B"],
+                    "premise3": ["right", "C", "D"],
+                    "premise4": ["right", "D", "E"],
+                    "model": ["E", "D", "C", "B", "A"],
+                    "valid": true,
+                    "continuous": true,
+                    "indeterminate": false,
+                    "task_id": "task3_pmm"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "C", "B"],
+                    "premise3": ["left", "D", "C"],
+                    "premise4": ["right", "D", "E"],
+                    "model": ["A", "D", "C", "B", "E"],
+                    "valid": false,
+                    "continuous": true,
+                    "indeterminate": false,
+                    "task_id": "task3_far"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["left", "C", "D"],
+                    "premise4": ["left", "D", "E"],
+                    "model": ["A", "B", "C", "D", "E"],
+                    "valid": true,
+                    "continuous": true,
+                    "indeterminate": false,
+                    "task_id": "task3_inv_pmm"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["right", "C", "B"],
+                    "premise3": ["left", "C", "D"],
+                    "premise4": ["left", "D", "E"],
+                    "model": ["A", "C", "B", "D", "E"],
+                    "valid": false,
+                    "continuous": true,
+                    "indeterminate": false,
+                    "task_id": "task3_inv_near"
+                },
+                // Determined, not continous
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "D", "C"],
+                    "premise3": ["left", "C", "B"],
+                    "premise4": ["left", "E", "D"],
+                    "model": ["E", "D", "C", "B", "A"],
+                    "valid": true,
+                    "continuous": false,
+                    "indeterminate": false,
+                    "task_id": "task4_pmm"
+                },
+                {
+                    "premise1": ["right", "A", "B"],
+                    "premise2": ["left", "D", "C"],
+                    "premise3": ["right", "B", "C"],
+                    "premise4": ["left", "E", "D"],
+                    "model": ["E", "C", "D", "B", "A"],
+                    "valid": false,
+                    "continuous": false,
+                    "indeterminate": false,
+                    "task_id": "task4_near"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["right", "D", "C"],
+                    "premise3": ["right", "C", "B"],
+                    "premise4": ["right", "E", "D"],
+                    "model": ["A", "B", "C", "D", "E"],
+                    "valid": true,
+                    "continuous": false,
+                    "indeterminate": false,
+                    "task_id": "task4_inv_pmm"
+                },
+                {
+                    "premise1": ["left", "A", "B"],
+                    "premise2": ["right", "D", "C"],
+                    "premise3": ["right", "C", "B"],
+                    "premise4": ["right", "E", "D"],
+                    "model": ["A", "B", "D", "C", "E"],
+                    "valid": false,
+                    "continuous": false,
+                    "indeterminate": false,
+                    "task_id": "task4_inv_near"
+                }
+            ];
+        </script>
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

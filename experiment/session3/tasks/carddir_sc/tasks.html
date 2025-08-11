@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3 id="task_header">Task 1/64</h3>
+				</header>
+
+                <div>
+                    <div id="premise_box">
+                        <h4 id="premise1" class="premises">The church is north of the bar.</h4>
+                        <h4 id="premise2"class="premises">The bar is north-east of the market.</h4>
+                        <hr>
+                        <h5>Which of the following is the most plausible conclusion?</h5>
+                    </div>
+
+                    <div id="responses_box">
+                        <div class="response_box" for="response_1">
+                            <input type="radio" name="choices" id="response_1" class="response_checkboxes" value="north">
+                            <span for="response_1"></span>
+                        </div>
+                        
+                        <div class="response_box" for="response_2">
+                            <input type="radio" name="choices" id="response_2" class="response_checkboxes" value="south">
+                            <span for="response_2"></span>
+                        </div>
+
+                        <div class="response_box" for="response_3">
+                            <input type="radio" name="choices" id="response_3" class="response_checkboxes" value="north-east">
+                            <span for="response_3"></span>
+                        </div>
+
+                        <div class="response_box" for="response_4">
+                            <input type="radio" name="choices" id="response_4" class="response_checkboxes" value="south-east">
+                            <span for="response_4"></span>
+                        </div>
+                        
+                        <div class="response_box" for="response_5">
+                            <input type="radio" name="choices" id="response_5" class="response_checkboxes" value="north-west">
+                            <span for="response_5"></span>
+                        </div>
+
+                        <div class="response_box" for="response_6">
+                            <input type="radio" name="choices" id="response_6" class="response_checkboxes" value="south-west">
+                            <span for="response_6"></span>
+                        </div>
+
+                        <div class="response_box" for="response_7">
+                            <input type="radio" name="choices" id="response_7" class="response_checkboxes" value="east">
+                            <span for="response_7"></span>
+                        </div>
+
+                        <div class="response_box" for="response_8">
+                            <input type="radio" name="choices" id="response_8" class="response_checkboxes" value="west">
+                            <span for="response_8"></span>
+                        </div>
+
+                        <div class="response_box" for="nvc">
+                            <input type="radio" name="choices" id="nvc" class="response_checkboxes" value="nvc">
+                            <span for="nvc"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+       
+
+        <script src="js/task.js"></script>
+    </body>
+</html>

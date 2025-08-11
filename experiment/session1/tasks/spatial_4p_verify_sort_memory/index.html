@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/task.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+        <script src="../../common/js/webexp.js"></script>
+        <script src="js/Sortable.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Spatial Arrangement Tasks</h3>
+				</header>
+
+                <div id="inner_content_div">
+                    <p>
+                        In the following tasks, you will be presented with <b>four statements</b>
+                        describing the <b>spatial relation</b> between fruits. For example,
+                        the statements could be:
+                    </p>
+
+                    <article style="text-align: left; width: fit-content; margin: auto; padding-bottom: 0.5em;">
+                        <h4>1. The banana is right of the apple</h4>
+                        <h4>2. The apple is right of the mango</h4>
+                        <h4>3. The mango is right of the pear</h4>
+                        <h4>4. The pear is right of the strawberry</h4>
+                    </article>
+
+                    <p style="margin-top: 1em;">
+                        You will then be presented with an <b>arrangement of fruits</b>, like in the example below.
+						The statements will <b>no longer be visible</b> once the arrangement is shown. 
+						Please do not use external tools (e.g., pen and paper) for this task.
+                    </p>
+
+                    <div id="answer_div" style="padding-top: 1em; padding-bottom: 1em;">
+                        <article id="fruit_div">
+                            <div class="fruit unselectable movable" id="fruit1_block">
+                                <div class="unicode_obj" id="fruit1">&#127827;</div>
+                                <span id="fruit1_text">Strawberry</span>
+                            </div>
+                            <div class="fruit unselectable movable" id="fruit2_block">
+                                <div class="unicode_obj" id="fruit2">&#127824;</div>
+                                <span id="fruit2_text">Pear</span>
+                            </div>
+                            <div class="fruit unselectable movable" id="fruit3_block">
+                                <div class="unicode_obj" id="fruit3">&#129389;</div>
+                                <span id="fruit3_text">Mango</span>
+                            </div>
+                            <div class="fruit unselectable movable" id="fruit4_block">
+                                <div class="unicode_obj" id="fruit4">&#127823;</div>
+                                <span id="fruit4_text">Apple</span>
+                            </div>
+                            <div class="fruit unselectable movable" id="fruit5_block">
+                                <div class="unicode_obj" id="fruit5">&#127820;</div>
+                                <span id="fruit5_text">Banana</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <p style="margin-top: 1em;">You then have to decide if the arrangement is <b>consistent with the statements</b>. 
+                        This means that the arrangement <b>is not contradicting the statements</b>,
+                         even if it is not the only possible arrangement.
+                    </p>
+                    <p>
+						Afterwards, if you believed the arrangement <b>was not consistent</b> 
+                        with the statements, you will be asked to <b>correct the arrangement</b> 
+                        by bringing the fruits in the correct order. For that, you can drag & drop 
+                        them with your mouse (you can test it on the example arrangement).
+                        Similarly, if you believed that the arrangement <b>was consistent</b> already,
+                        you will be asked to rearrange the fruits to reflect the order <b>you imagined</b>
+                        when thinking about the statements.
+                    </p>
+                    <p>
+                        To familiarize yourself with the task, you will be presented with an example 
+                        task first. Click on the <i>Continue</i> button when you are ready to start.
+                    </p>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false">Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var fruitDiv = document.getElementById("fruit_div");
+            var continueBtn = document.getElementById("continue_btn");
+
+            async function continueFunction() {
+                continueBtn.disabled = true;
+                continueBtn.setAttribute("aria-busy", "true");
+                
+                // Save and continue with next task
+                let personId = sessionStorage.getItem("personId");
+
+                let payload = {
+                    "id": personId,
+                    "page" : "spatial_model_arrangement_instruction",
+                    "page_time" : Date.now() - pageStartTime
+                }
+
+                let success = await writeData(payload);
+                if(success) {
+                    changePage("example.html");
+                } else {
+                    alert("Could not save data. Please contact us for assistance.")
+                }
+            }
+
+            function init() {
+                // Remove task from task list
+                removeCurrentTask();
+                
+                // Block participants from leaving
+                blockLeaving();
+
+                // Make the fruits sortable
+                fruitSort = new Sortable(fruitDiv, {
+                    swapThreshold: 1,
+                    animation: 150,
+                    direction: "horizontal",
+                    swap: false,
+                    forceFallback: true,
+                    ghostClass: 'drag_from',
+                    swapClass: 'drag_to',
+                });
+
+                // Add continue Btn
+                continueBtn.addEventListener("click", continueFunction);
+            }
+
+            window.addEventListener("load", init);
+        </script>
+
+    </body>
+</html>

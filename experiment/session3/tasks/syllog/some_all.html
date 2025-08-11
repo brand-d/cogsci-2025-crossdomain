@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../common/css/main.css">
+        <link rel="stylesheet" href="css/questionaire.css">
+        <script src="../../common/js/webexp.js"></script>
+		<title>Experiment</title>
+    </head>
+
+    <body class="fit_with_scroll">
+        <div id="main_container" class="container">
+            <article class="top_bot_pad_1em main_card">
+                <header class="header_section">
+                    <h3>Syllogisms - Interpretation</h3>
+				</header>
+
+                <div style="margin-bottom: 1em;">
+                    <h5>How do you interpret <i>Some</i>?</h5>
+                    <p>When you were presented with statements that contained <b>Some</b> 
+                        (for example <i>Some tailors are teachers</i>):<br> 
+                        Did you interpret <b>Some</b> so that it can also include <b>All</b> 
+                        (for example, would it also possible that <b>all</b> tailors are teachers)?
+                    </p>
+
+                    <div class="questionaire_div">
+                        <label for="entails_all_yes">
+                            <input id="entails_all_yes" type="radio" name="entail" value="yes">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="questionaire_div">
+                        <label for="entails_all_no">
+                            <input id="entails_all_no" type="radio" name="entail" value="no">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div style="margin-top: 1em;">
+                    <h5>How did you handle <i>No valid conclusion</i>?</h5>
+                    <p> In the tasks you solved before, there was the option to respond with <i>No valid conclusion</i>.
+                        Consider cases where you responded with <i>No valid conclusion</i>: 
+                        Please describe your approach to determine that it is the right answer
+                        (e.g., did you test all other options, did you use specific rules,...).
+                    </p>
+                    <textarea id="nvc_strategy" placeholder="How did you decide if there is 'no valid conclusion'?"></textarea>
+                    
+                    <p> Please describe in your own words what it means if there is <i>No valid conclusion</i>.
+                        How would you explain it?
+                    </p>
+                    <textarea id="nvc_meaning" placeholder="How would you explain what it means if there is 'no valid conclusion'?"></textarea>
+                </div>
+
+                <footer class="footer_section">
+                    <div class="continue_btn_div">
+                        <button id="continue_btn" aria-busy="false" disabled>Continue</button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            var continueBtn = document.getElementById("continue_btn");
+            var yesOption = document.getElementById("entails_all_yes");
+            var noOption = document.getElementById("entails_all_no");
+
+            var nvcStrategy = document.getElementById("nvc_strategy");
+            var nvcMeaning = document.getElementById("nvc_meaning");
+
+            var answeredSome = false;
+            var answeredNvc1 = false;
+            var answeredNvc2 = false;
+
+            window.addEventListener("load", function() {
+                // Add callback for continue button
+                continueBtn.addEventListener("click", async function() {
+                    // Disable button
+                    continueBtn.disabled = true;
+                    yesOption.disabled = true;
+                    noOption.disabled = true;
+                    
+                    // Show spinning circle while saving
+                    continueBtn.setAttribute("aria-busy", "true");
+
+                    // Save and continue with next task
+                    let personId = sessionStorage.getItem("personId");
+
+                    let nvcMeaningText = nvcMeaning.value;
+                    nvcMeaningText = nvcMeaningText.replaceAll("\n", "/").replaceAll("\r", "/").replaceAll(";", "-");
+                    let nvcStrategyText = nvcStrategy.value;
+                    nvcStrategyText = nvcStrategyText.replaceAll("\n", "/").replaceAll("\r", "/").replaceAll(";", "-");
+
+                    let response = yesOption.checked ? "yes" : "no";
+                    let payload = {
+                        "id": personId,
+                        "page" : "syllogisms_some_all",
+                        "page_time" : Date.now() - pageStartTime,
+                        "response" : response,
+                        "nvc_meaning": nvcMeaningText,
+                        "nvc_strategy": nvcStrategyText
+                    }
+
+                    let success = await writeData(payload);
+                    if(success) {
+                        goToNextTask();
+                    } else {
+                        alert("Could not save data. Please contact us for assistance.")
+                    }
+                });
+
+                yesOption.addEventListener("input", function() {
+                    answeredSome = true;
+                    continueBtn.disabled = !(answeredSome && answeredNvc1 && answeredNvc2);
+                });
+                noOption.addEventListener("input", function() {
+                    answeredSome = true;
+                    continueBtn.disabled = !(answeredSome && answeredNvc1 && answeredNvc2);
+                });
+                nvcStrategy.addEventListener("input", function(e){
+                    answeredNvc1 = this.value.length != 0;
+                    continueBtn.disabled = !(answeredSome && answeredNvc1 && answeredNvc2);
+                });
+                nvcMeaning.addEventListener("input", function(e){
+                    answeredNvc2 = this.value.length != 0;
+                    continueBtn.disabled = !(answeredSome && answeredNvc1 && answeredNvc2);
+                });
+            });
+        </script>
+    </body>
+</html>
