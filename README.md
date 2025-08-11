@@ -24,7 +24,27 @@ Companion repository for the 2025 article "Using Cross-Domain Data to Predict Sy
     - `syllog_data.csv`: Contains the results and responses for the 64 syllogistic reasoning tasks
     - `verbal_data.csv`: Contains the results and responses for the verbal substitution tasks
     - `wason_data.csv`: Contains the results and responses for the Wason card selection task (with different metrics for correctness to allow for partial correctness, too)
-- `eperiment`: The webexperiment separated in three sessions. Further information about running the experiment is included in the readme there.
+- `experiment`: The webexperiment separated in three sessions. The experiment is written in vanilla HTML/javascript and PHP, and can be used with any standard webserver. We recommend [XAMPP](https://www.apachefriends.org/download.html) to run it locally (i.e., moving it to the HTDOCS subfolder in XAMPP, and then access it via localhost in a webbrowser).
+    - `session1/tasks`: Contains the tasks in session 1.
+        - `conditionals`: The 4 conditional reasoning tasks.
+        - `corsi`: The CORSI block-tapping-task (forwards).
+        - `mental_rotation`: Mental rotation tasks.
+        - `nfc`: Need for Cognition short scale (4 items).
+        - `session_1_intro`: Introductory text for the experiment sessions.
+        - `spatial_4p_verify_sort_memory`: Spatial reasoning tasks with 4 premises, where participants have to verify and rearrance models.
+        - `spatial_4p_visible`: Spatial reasoning tasks with 4 premises, where participants can constantly see the premises.
+    - `session2/tasks`: Contains the tasks in session 2.
+        - `counterfactuals`: 4 conditional reasoning tasks with counterfactual contents.
+        - `crt`: 7-item version of the Cognitive Reflection Test.
+        - `spatial_4p_memory_allp`: Spatial reasoning tasks with 4 premises, but premises are not shown anymore when answering questions (requires memory). In this set of tasks, no tasks asking for *in between* are present.
+        - `syllog`: 32 syllogisms (the other 32 are in the other session).
+        - `verbal_substitution`: Verbal substitution test, where participants have to replace characters in a memorized sequence of characters.
+    - `session3/tasks`: Contains the tasks in session 3.
+        - `carddir_interpretation`: Asks for some cardinal-direction interpretations by querying for the relation between buildings.
+        - `carddir_sc`: Single choice questions for cardinal directions. Participants have to conclude a direction based on two premises.
+        - `spatial_4p_memory_allp`: Spatial reasoning tasks with 4 premises, but premises are not shown anymore when answering questions (requires memory). In this set of tasks, tasks asking for *in between* are present.
+        - `syllog`: The remaining 32 syllogisms.
+        - `wason_selection`: A short test using the Wason Card Selection Task.
 - `poster`: Contains the conference poster`
 	- `cogsci2025_crossdomain_poster.pdf`: The CogSci2025 poster.
 
